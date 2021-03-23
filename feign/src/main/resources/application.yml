@@ -1,14 +1,14 @@
 server:
-  port: 8002
+  port: ${port}8002
 spring:
   application:
-    name: feign
+    name: ${name}feign
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://shuttle:shuttle@localhost:8001/eureka/
+      defaultZone: http://${user}:${password}@${eureka-url}:${eureka-port}/eureka/
 
 feign:
   hystrix:
