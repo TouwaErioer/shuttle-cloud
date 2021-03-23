@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.shuttle</groupId>
-    <artifactId>shuttle-eureka</artifactId>
+    <artifactId>eureka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>shuttle-eureka</name>
+    <name>eureka</name>
     <description>eureka-service</description>
     <properties>
         <java.version>1.8</java.version>

@@ -1,0 +1,17 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: eureka-server
+  security:
+    user:
+      name: shuttle
+      password: shuttle
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  server:
+    enable-self-preservation: false
