@@ -2,6 +2,7 @@ package com.shuttle.feign.controll;
 
 import com.shuttle.feign.annotation.Admin;
 import com.shuttle.feign.annotation.LoginUser;
+import com.shuttle.feign.annotation.PassToken;
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.User;
 import com.shuttle.feign.service.UserService;
@@ -22,6 +23,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @PassToken
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ReturnMessage<Object> login(String account, String password, int expired) {
         return userService.login(account, password, expired);// todo 前端改account
@@ -33,6 +35,7 @@ public class UserController {
         return true;
     }
 
+    @PassToken
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ReturnMessage<Object> register(User user) {
         return userService.register(user);
