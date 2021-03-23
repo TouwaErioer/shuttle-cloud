@@ -1,12 +1,12 @@
 server:
-  port: 8001
+  port: ${port}
 spring:
   application:
-    name: eureka-server
+    name: ${name}
   security:
     user:
-      name: shuttle
-      password: shuttle
+      name: ${user}
+      password: ${password}
 eureka:
   instance:
     hostname: localhost
