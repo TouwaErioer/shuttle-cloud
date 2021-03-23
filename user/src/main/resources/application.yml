@@ -1,0 +1,44 @@
+mybatis:
+  type-aliases-package: com.shuttle.user.mapper
+server:
+  port: ${port}
+spring:
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${dbPasswd}
+    url: jdbc:mysql://${dbHost}:3306/${dbName}?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: ${dbUser}
+  cache:
+    type: redis
+    redis:
+      host: ${redisHost}
+      port: 6379
+      password: ${redisPassword}
+      timeout: 1000
+      database: 0
+      lettuce:
+        pool:
+          max-active: 100
+          max-wait: -1
+          max-idle: 8
+          min-idle: 0
+    elasticsearch:
+      rest:
+        uris: ${elasticsearchUrl}
+logging:
+  config: classpath:log4j2.xml
+pagehelper:
+  helperDialect: mysql
+  params: count=countSql
+  reasonable: true
+  supportMethodsArguments: true
+jwt:
+  key: ${key}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://shuttle:shuttle@localhost:8001/eureka/
