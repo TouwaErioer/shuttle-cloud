@@ -1,8 +1,8 @@
 server:
-  port: ${port}8002
+  port: ${port}
 spring:
   application:
-    name: ${name}feign
+    name: ${name}
 eureka:
   client:
     register-with-eureka: true
@@ -13,3 +13,5 @@ eureka:
 feign:
   hystrix:
     enabled: true
+jwt:
+  key: ${key}
