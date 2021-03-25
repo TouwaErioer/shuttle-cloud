@@ -4,8 +4,8 @@ import com.shuttle.feign.config.exception.BusinessException;
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.Services;
 import com.shuttle.feign.service.ServiceService;
-import com.shuttle.feign.service.feignService.CategoryFeign;
-import com.shuttle.feign.service.feignService.ServiceFeign;
+import com.shuttle.feign.fetch.CategoryFetch;
+import com.shuttle.feign.fetch.ServiceFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
 import org.springframework.stereotype.Component;
 
@@ -21,40 +21,40 @@ import java.util.Map;
 public class ServiceServiceImp implements ServiceService {
 
     @Resource
-    private ServiceFeign serviceFeign;
+    private ServiceFetch serviceFetch;
 
     @Resource
-    private CategoryFeign categoryFeign;
+    private CategoryFetch categoryFetch;
 
     @Override
     public ReturnMessage<Object> insert(Services services) {
-        return serviceFeign.insert(services);
+        return serviceFetch.insert(services);
     }
 
     @Override
     public ReturnMessage<Object> delete(Long id) {
-        BusinessException.check(categoryFeign.deleteByServiceId(id));
-        BusinessException.check(serviceFeign.delete(id));
+        BusinessException.check(categoryFetch.deleteByServiceId(id));
+        BusinessException.check(serviceFetch.delete(id));
         return ReturnMessageUtil.success();
     }
 
     @Override
     public ReturnMessage<Object> update(Services services) {
-        return serviceFeign.update(services);
+        return serviceFetch.update(services);
     }
 
     @Override
     public ReturnMessage<Object> findAll(Map<String, String> option) {
-        return serviceFeign.findAll(option);
+        return serviceFetch.findAll(option);
     }
 
     @Override
     public ReturnMessage<Object> findById(long id) {
-        return serviceFeign.findById(id);
+        return serviceFetch.findById(id);
     }
 
     @Override
     public ReturnMessage<Object> exist(long id) {
-        return serviceFeign.exist(id);
+        return serviceFetch.exist(id);
     }
 }

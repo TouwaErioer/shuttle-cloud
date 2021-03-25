@@ -1,15 +1,15 @@
-package com.shuttle.feign.service.feignService;
+package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.Services;
-import com.shuttle.feign.service.fallback.ServiceFallbackFeign;
+import com.shuttle.feign.fetch.fallback.ServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "service", fallback = ServiceFallbackFeign.class)
-public interface ServiceFeign {
+@FeignClient(value = "service", fallback = ServiceFallback.class)
+public interface ServiceFetch {
 
     @PostMapping(value = "/service/insert")
     ReturnMessage<Object> insert(@RequestBody Services services);

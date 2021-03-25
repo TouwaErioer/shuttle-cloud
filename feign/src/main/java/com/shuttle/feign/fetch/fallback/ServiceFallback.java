@@ -1,8 +1,8 @@
-package com.shuttle.feign.service.fallback;
+package com.shuttle.feign.fetch.fallback;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.Services;
-import com.shuttle.feign.service.feignService.ServiceFeign;
+import com.shuttle.feign.fetch.ServiceFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
 
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/03/25 19:24
  */
-public class ServiceFallbackFeign implements ServiceFeign {
+public class ServiceFallback implements ServiceFetch {
 
     @Override
     public ReturnMessage<Object> insert(Services services) {

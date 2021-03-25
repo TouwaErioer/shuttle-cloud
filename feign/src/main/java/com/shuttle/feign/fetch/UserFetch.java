@@ -1,15 +1,15 @@
-package com.shuttle.feign.service.feignService;
+package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.User;
-import com.shuttle.feign.service.fallback.UserFallbackFeign;
+import com.shuttle.feign.fetch.fallback.UserFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "user",fallback = UserFallbackFeign.class)
-public interface UserFeign {
+@FeignClient(value = "user",fallback = UserFallback.class)
+public interface UserFetch {
 
     @PostMapping("/user/register")
     ReturnMessage<Object> register(@RequestBody User user);

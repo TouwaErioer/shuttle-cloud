@@ -1,15 +1,15 @@
-package com.shuttle.feign.service.feignService;
+package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.Category;
 import com.shuttle.feign.entity.ReturnMessage;
-import com.shuttle.feign.service.fallback.CategoryFallbackFeign;
+import com.shuttle.feign.fetch.fallback.CategoryFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "category", fallback = CategoryFallbackFeign.class)
-public interface CategoryFeign {
+@FeignClient(value = "category", fallback = CategoryFallback.class)
+public interface CategoryFetch {
 
     @PostMapping("/category/insert")
     ReturnMessage<Object> insert(@RequestBody Category category);
