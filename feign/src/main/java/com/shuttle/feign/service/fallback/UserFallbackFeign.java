@@ -1,7 +1,8 @@
-package com.shuttle.feign.service;
+package com.shuttle.feign.service.fallback;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.User;
+import com.shuttle.feign.service.feignService.UserFeign;
 import com.shuttle.feign.utils.ReturnMessageUtil;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * @created: 2021/03/22 15:19
  */
 @Component
-public class UserFallbackService implements UserService {
+public class UserFallbackFeign implements UserFeign {
     @Override
     public ReturnMessage<Object> register(User user) {
         return ReturnMessageUtil.error(-1, "系统错误");
