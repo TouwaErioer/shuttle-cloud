@@ -14,6 +14,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/02/03 19:56
  */
+
 @RestController
 @RequestMapping("/store")
 public class StoreController {
@@ -68,5 +69,10 @@ public class StoreController {
     @RequestMapping(value = "/search/{keyword}", method = RequestMethod.GET)
     public ReturnMessage<Object> search(@PathVariable("keyword") String keyword, @RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(storeService.search(keyword, option));
+    }
+
+    @RequestMapping(value = "/exist/{id}", method = RequestMethod.GET)
+    public ReturnMessage<Object> exist(@PathVariable("id") long id) {
+        return ReturnMessageUtil.sucess(storeService.exist(id));
     }
 }

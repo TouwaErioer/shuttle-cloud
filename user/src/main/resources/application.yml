@@ -24,9 +24,9 @@ spring:
           max-wait: -1
           max-idle: 8
           min-idle: 0
-    elasticsearch:
-      rest:
-        uris: ${elasticsearchUrl}
+  elasticsearch:
+    rest:
+      uris: ${elasticsearchUrl}
 logging:
   config: classpath:log4j2.xml
 pagehelper:
@@ -42,3 +42,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://shuttle:shuttle@localhost:8001/eureka/
+alipay:
+  appId: ${appid}
+  gateway: ${gateway}
+  redirectUrl: ${redirectUrl}

@@ -65,4 +65,9 @@ public class ProductController {
     public ReturnMessage<Object> search(@PathVariable("keyword") String keyword, @RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(productService.search(keyword, option));
     }
+
+    @RequestMapping(value = "/exist/{id}", method = RequestMethod.GET)
+    public ReturnMessage<Object> exist(@PathVariable("id") long id, @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(productService.exist(id));
+    }
 }

@@ -1,10 +1,10 @@
-package com.shuttle.service;
+package com.shuttle.config;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServiceApplicationTests {
+class ConfigApplicationTests {
 
     @Test
     void contextLoads() {

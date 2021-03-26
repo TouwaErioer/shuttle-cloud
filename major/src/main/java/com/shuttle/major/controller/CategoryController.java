@@ -52,4 +52,9 @@ public class CategoryController {
     public ReturnMessage<Object> findAllByServiceId(@PathVariable long id) {
         return ReturnMessageUtil.sucess(categoryService.findAllByServiceId(id));
     }
+
+    @RequestMapping(value = "/exit/{id}", method = RequestMethod.GET)
+    public ReturnMessage<Object> exit(@PathVariable long id) {
+        return ReturnMessageUtil.sucess(categoryService.exist(id));
+    }
 }
