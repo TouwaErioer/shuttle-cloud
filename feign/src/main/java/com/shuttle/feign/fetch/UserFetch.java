@@ -6,9 +6,11 @@ import com.shuttle.feign.fetch.fallback.UserFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-@FeignClient(value = "user",fallback = UserFallback.class)
+@FeignClient(value = "user", fallback = UserFallback.class)
 public interface UserFetch {
 
     @PostMapping("/user/register")
@@ -52,4 +54,12 @@ public interface UserFetch {
 
     @GetMapping("/user/exist/{userId}")
     ReturnMessage<Object> exist(@PathVariable long userId);
+
+    @RequestMapping("/return")
+    @ResponseBody
+    void returnCall(HttpServletRequest request, HttpServletResponse response);
+
+    @RequestMapping("/notify")
+    @ResponseBody
+    void notifyCall(HttpServletRequest request);
 }

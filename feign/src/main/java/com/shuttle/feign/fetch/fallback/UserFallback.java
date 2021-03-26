@@ -6,6 +6,8 @@ import com.shuttle.feign.fetch.UserFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -13,6 +15,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/03/22 15:19
  */
+
 @Component
 public class UserFallback implements UserFetch {
     @Override
@@ -83,5 +86,15 @@ public class UserFallback implements UserFetch {
     @Override
     public ReturnMessage<Object> exist(long userId) {
         return ReturnMessageUtil.error(-1, "系统错误");
+    }
+
+    @Override
+    public void returnCall(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    @Override
+    public void notifyCall(HttpServletRequest request) {
+
     }
 }

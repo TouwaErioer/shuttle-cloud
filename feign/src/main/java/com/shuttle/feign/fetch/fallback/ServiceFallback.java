@@ -4,6 +4,7 @@ import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.Services;
 import com.shuttle.feign.fetch.ServiceFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/03/25 19:24
  */
+@Component
 public class ServiceFallback implements ServiceFetch {
 
     @Override
