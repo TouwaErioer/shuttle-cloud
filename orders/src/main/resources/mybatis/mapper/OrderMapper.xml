@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.hope.model.mapper.OrderMapper">
+    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into orders(cid,pid,sid,date,address,note,file,status)
+        values
+        <foreach collection="list" item="order" separator=",">
+            (#{order.cid},#{order.pid},1,#{order.date},#{order.address},#{order.note},#{order.file},#{order.status})
+        </foreach>
+    </insert>
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from orders
+        where id in
+        <foreach collection="list" item="order" separator="," open="(" close=")">
+            #{order.id}
+        </foreach>
+    </delete>
+</mapper>
