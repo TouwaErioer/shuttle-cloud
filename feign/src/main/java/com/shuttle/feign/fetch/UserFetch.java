@@ -2,7 +2,7 @@ package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.User;
-import com.shuttle.feign.fetch.fallback.UserFallback;
+import com.shuttle.feign.fallback.UserFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

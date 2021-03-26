@@ -2,7 +2,7 @@ package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.Category;
 import com.shuttle.feign.entity.ReturnMessage;
-import com.shuttle.feign.fetch.fallback.CategoryFallback;
+import com.shuttle.feign.fallback.CategoryFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

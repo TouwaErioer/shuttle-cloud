@@ -1,22 +1,20 @@
-package com.shuttle.feign.fetch.fallback;
+package com.shuttle.feign.fallback;
 
-import com.shuttle.feign.entity.Category;
+import com.shuttle.feign.entity.Product;
 import com.shuttle.feign.entity.ReturnMessage;
-import com.shuttle.feign.fetch.CategoryFetch;
+import com.shuttle.feign.fetch.ProductFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 /**
  * @description:
  * @author: DHY
- * @created: 2021/03/25 19:30
+ * @created: 2021/03/26 15:53
  */
-@Component
-public class CategoryFallback implements CategoryFetch {
+public class ProductFallback implements ProductFetch {
     @Override
-    public ReturnMessage<Object> insert(Category category) {
+    public ReturnMessage<Object> insert(Product product) {
         return ReturnMessageUtil.error(-1, "系统错误");
     }
 
@@ -26,7 +24,17 @@ public class CategoryFallback implements CategoryFetch {
     }
 
     @Override
-    public ReturnMessage<Object> update(Category category) {
+    public ReturnMessage<Object> update(Product product) {
+        return ReturnMessageUtil.error(-1, "系统错误");
+    }
+
+    @Override
+    public ReturnMessage<Object> rank() {
+        return ReturnMessageUtil.error(-1, "系统错误");
+    }
+
+    @Override
+    public ReturnMessage<Object> search(String keyword, Map<String, String> option) {
         return ReturnMessageUtil.error(-1, "系统错误");
     }
 
@@ -36,12 +44,7 @@ public class CategoryFallback implements CategoryFetch {
     }
 
     @Override
-    public ReturnMessage<Object> findAllByServiceId(long serviceId) {
-        return ReturnMessageUtil.error(-1, "系统错误");
-    }
-
-    @Override
-    public ReturnMessage<Object> exist(long id) {
+    public ReturnMessage<Object> findByStoreId(long storeId) {
         return ReturnMessageUtil.error(-1, "系统错误");
     }
 
@@ -51,7 +54,12 @@ public class CategoryFallback implements CategoryFetch {
     }
 
     @Override
-    public ReturnMessage<Object> deleteByServiceId(long serviceId) {
+    public ReturnMessage<Object> exist(long id) {
+        return ReturnMessageUtil.error(-1, "系统错误");
+    }
+
+    @Override
+    public ReturnMessage<Object> review(Product product, String token) {
         return ReturnMessageUtil.error(-1, "系统错误");
     }
 }

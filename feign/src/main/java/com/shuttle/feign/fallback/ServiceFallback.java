@@ -1,4 +1,4 @@
-package com.shuttle.feign.fetch.fallback;
+package com.shuttle.feign.fallback;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.Services;
