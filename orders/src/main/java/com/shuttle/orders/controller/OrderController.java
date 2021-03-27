@@ -35,6 +35,12 @@ public class OrderController {
         return ReturnMessageUtil.sucess();
     }
 
+    @RequestMapping(value = "/deleteByUserId", method = RequestMethod.DELETE)
+    public ReturnMessage<Object> deleteByUserId(long userId) {
+        orderService.deleteByUserId(userId);
+        return ReturnMessageUtil.sucess();
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ReturnMessage<Object> update(Orders order) {
         orderService.update(order);

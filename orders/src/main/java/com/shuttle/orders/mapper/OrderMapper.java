@@ -24,6 +24,9 @@ public interface OrderMapper {
     @Delete("delete from orders where ${key} = #{id}")
     int delete(long id, String key);
 
+    @Delete("delete from orders where cid = #{userId} or sid = #{userId}")
+    int deleteByUserId(long userId);
+
     @Update("update orders set address = #{address},date = #{date},note = #{note},file = #{file},status = #{status} where id = #{id}")
     int update(Orders order);
 

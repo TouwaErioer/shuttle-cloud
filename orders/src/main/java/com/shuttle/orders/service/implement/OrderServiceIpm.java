@@ -139,6 +139,18 @@ public class OrderServiceIpm implements OrderService {
     }
 
     /**
+     * 根据用户id删除订单
+     * @param userId 用户id
+     */
+    @Override
+    @Transient
+    @CacheEvict(value = "order",allEntries = true)
+    public void deleteByUserId(long userId){
+        int res = orderMapper.deleteByUserId(userId);
+        log.info(LoggerHelper.logger(userId, res));
+    }
+
+    /**
      * 更新订单
      *
      * @param order 订单id

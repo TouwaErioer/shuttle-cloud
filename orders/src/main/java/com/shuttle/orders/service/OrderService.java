@@ -14,6 +14,8 @@ public interface OrderService {
 
     void update(Orders order);
 
+    void deleteByUserId(long userId);
+
     void receive(long id, long userId);
 
     void completed(Orders orders, String token);
