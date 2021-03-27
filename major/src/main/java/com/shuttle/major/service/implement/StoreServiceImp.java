@@ -1,18 +1,19 @@
 package com.shuttle.major.service.implement;
 
-import com.example.hope.common.logger.LoggerHelper;
-import com.example.hope.common.utils.Utils;
-import com.example.hope.config.exception.BusinessException;
-import com.example.hope.config.redis.RedisService;
-import com.example.hope.model.entity.Store;
-import com.example.hope.model.mapper.StoreMapper;
-import com.example.hope.repository.elasticsearch.EsPageHelper;
-import com.example.hope.repository.elasticsearch.StoreRepository;
-import com.example.hope.service.CategoryService;
-import com.example.hope.service.ServiceService;
-import com.example.hope.service.StoreService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.shuttle.major.common.logger.LoggerHelper;
+import com.shuttle.major.config.exception.BusinessException;
+import com.shuttle.major.config.redis.RedisService;
+import com.shuttle.major.entity.Store;
+import com.shuttle.major.mapper.StoreMapper;
+import com.shuttle.major.repository.elasticsearch.EsPageHelper;
+import com.shuttle.major.repository.elasticsearch.StoreRepository;
+import com.shuttle.major.service.CategoryService;
+import com.shuttle.major.service.ProductService;
+import com.shuttle.major.service.ServiceService;
+import com.shuttle.major.service.StoreService;
+import com.shuttle.major.utils.Utils;
 import lombok.extern.log4j.Log4j2;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.cache.annotation.CacheEvict;
@@ -40,7 +41,7 @@ public class StoreServiceImp implements StoreService {
     private RedisService redisService;
 
     @Resource
-    private ProductServiceIpm productServiceIpm;
+    private ProductService productService;
 
     @Resource
     private StoreRepository storeRepository;
@@ -94,7 +95,7 @@ public class StoreServiceImp implements StoreService {
     @CacheEvict(value = "store", allEntries = true)
     public void delete(long id) {
         int res = storeMapper.delete(id, "id");
-        productServiceIpm.deleteByStoreId(id);
+        productService.deleteByStoreId(id);
         log.info(LoggerHelper.logger(id, res));
         BusinessException.check(res, "删除失败");
         storeRepository.deleteById(id);
@@ -108,7 +109,7 @@ public class StoreServiceImp implements StoreService {
     @Transient
     @CacheEvict(value = "store", allEntries = true)
     public void deleteByCategoryId(long categoryId) {
-        for (Store store : findByCategoryId(categoryId)) productServiceIpm.deleteByStoreId(store.getId());
+        for (Store store : findByCategoryId(categoryId)) productService.deleteByStoreId(store.getId());
         int res = storeMapper.delete(categoryId, "categoryId");
         log.info(LoggerHelper.logger(categoryId, res));
     }

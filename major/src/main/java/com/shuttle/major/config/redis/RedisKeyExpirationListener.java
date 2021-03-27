@@ -1,12 +1,15 @@
 package com.shuttle.major.config.redis;
 
-import com.example.hope.service.AdsService;
-import com.example.hope.service.serviceIpm.OrderServiceIpm;
+import com.shuttle.major.config.exception.BusinessException;
+import com.shuttle.major.fetch.OrderFetch;
+import com.shuttle.major.service.AdsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @description:
@@ -16,15 +19,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisKeyExpirationListener extends KeyExpirationEventMessageListener {
 
-    private OrderServiceIpm orderServiceIpm;
+    @Resource
     private AdsService adsService;
 
-    @Autowired
-    public RedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer, OrderServiceIpm orderService,
-                                      AdsService adsService) {
+    public RedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer) {
         super(listenerContainer);
-        this.orderServiceIpm = orderService;
-        this.adsService = adsService;
     }
 
     /**
@@ -34,8 +33,6 @@ public class RedisKeyExpirationListener extends KeyExpirationEventMessageListene
     public void onMessage(Message message, byte[] pattern) {
         String key = message.toString();
         long id = Long.parseLong(key.substring(key.indexOf("_") + 1));
-        if (key.contains("order")) orderServiceIpm.delete(id);
-        else if (key.contains("completed")) orderServiceIpm.completed(id);
-        else if (key.contains("ads")) adsService.delete(id);
+        if (key.contains("ads")) adsService.delete(id);
     }
 }

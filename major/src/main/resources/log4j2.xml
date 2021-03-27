@@ -22,7 +22,6 @@
             <Policies>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
-            设置日志的文件个数上限，不设置默认为7个，超过大小后会被覆盖；依赖于filePattern中的%i
             <DefaultRolloverStrategy max="100"/>
         </RollingFile>
 
@@ -41,11 +40,11 @@
 
     <Loggers>
 
-        <Logger level="info" name="com.shuttle.user.service.serviceIpm">
+        <Logger level="info" name="com.shuttle.major.serviceIpm">
             <AppenderRef ref="infoFileAppender" level="info"/>
         </Logger>
 
-        <Logger level="warning" name="com.shuttle.user" additivity="false">
+        <Logger level="warning" name="com.shuttle.major" additivity="false">
             <AppenderRef ref="errorFileAppender" level="error"/>
         </Logger>
 

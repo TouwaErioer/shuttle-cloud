@@ -58,7 +58,7 @@ public class StoreController {
 
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findById(@PathVariable("id") long id) {
-        return ReturnMessageUtil.sucess(storeService.findById(id));
+        return ReturnMessageUtil.sucess(storeService.findById(id).get(0));
     }
 
     @RequestMapping(value = "/rank", method = RequestMethod.GET)

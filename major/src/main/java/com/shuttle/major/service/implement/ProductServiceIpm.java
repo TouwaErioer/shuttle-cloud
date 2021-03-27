@@ -105,6 +105,7 @@ public class ProductServiceIpm implements ProductService {
      *
      * @param storeId 商店id
      */
+    @Override
     @Transient
     @CacheEvict(value = "product", allEntries = true)
     public void deleteByStoreId(long storeId) {
