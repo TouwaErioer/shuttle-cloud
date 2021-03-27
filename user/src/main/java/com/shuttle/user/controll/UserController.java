@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public ReturnMessage<Object> login(long id) {
+    public ReturnMessage<Object> delete(long id) {
         userService.delete(id);
         return ReturnMessageUtil.success();
     }
