@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.shuttle.user.config.exception.BusinessException;
 import com.shuttle.user.config.logger.LoggerHelper;
 import com.shuttle.user.entity.User;
+import com.shuttle.user.fetch.OrdersFetch;
 import com.shuttle.user.mapper.UserMapper;
 import com.shuttle.user.repository.EsPageHelper;
 import com.shuttle.user.repository.UserRepository;
@@ -42,6 +43,9 @@ public class UserServiceIpm implements UserService {
 
     @Resource
     private EsPageHelper<User> esPageHelper;
+
+    @Resource
+    private OrdersFetch ordersFetch;
 
     /**
      * 用户注册
@@ -90,6 +94,7 @@ public class UserServiceIpm implements UserService {
     @CacheEvict(value = "user", allEntries = true)
     public void delete(long id) {
         int res = userMapper.delete(id);
+        BusinessException.checkReturnMessage(ordersFetch.deleteByUserId(id));
         log.info(LoggerHelper.logger(id, res));
         BusinessException.check(res, "删除失败");
         userRepository.deleteById(id);

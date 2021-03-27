@@ -46,3 +46,11 @@ alipay:
   appId: ${appid}
   gateway: ${gateway}
   redirectUrl: ${redirectUrl}
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    max-connections: 200
+    max-connections-per-route: 50
+    okhttp:
+      enabled: true

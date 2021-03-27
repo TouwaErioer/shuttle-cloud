@@ -1,5 +1,6 @@
 package com.shuttle.user.config.exception;
 
+import com.shuttle.user.entity.ReturnMessage;
 import lombok.Data;
 
 @Data
@@ -17,5 +18,13 @@ public class BusinessException extends RuntimeException {
         if(res < 1){
             throw new BusinessException(0,message);
         }
+    }
+
+    public static Object checkReturnMessage(ReturnMessage returnMessage) {
+        if (returnMessage.getCode() < 1) {
+            System.out.println(returnMessage);
+            throw new BusinessException(returnMessage.getCode(), returnMessage.getMessage());
+        }
+        return returnMessage.getData();
     }
 }
