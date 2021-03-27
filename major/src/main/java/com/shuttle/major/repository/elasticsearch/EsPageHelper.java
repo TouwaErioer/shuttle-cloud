@@ -1,4 +1,4 @@
-package com.shuttle.major.repository;
+package com.shuttle.major.repository.elasticsearch;
 
 import com.shuttle.major.utils.Utils;
 import org.elasticsearch.index.query.QueryBuilder;

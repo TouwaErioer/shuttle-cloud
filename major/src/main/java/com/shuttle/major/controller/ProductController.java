@@ -70,4 +70,10 @@ public class ProductController {
     public ReturnMessage<Object> exist(@PathVariable("id") long id, @RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(productService.exist(id));
     }
+
+    @RequestMapping(value = "/addSales", method = RequestMethod.POST)
+    public ReturnMessage<Object> addSales(long id, int sales) {
+        productService.addSales(id, sales);
+        return ReturnMessageUtil.sucess();
+    }
 }

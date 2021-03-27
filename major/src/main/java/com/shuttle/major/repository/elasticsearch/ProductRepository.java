@@ -1,4 +1,4 @@
-package com.shuttle.major.repository;
+package com.shuttle.major.repository.elasticsearch;
 
 import com.shuttle.major.entity.Product;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

@@ -1,0 +1,155 @@
+package com.shuttle.major.service.implement;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shuttle.major.config.exception.BusinessException;
+import com.shuttle.major.entity.Comments;
+import com.shuttle.major.entity.Orders;
+import com.shuttle.major.entity.Page;
+import com.shuttle.major.fetch.OrderFetch;
+import com.shuttle.major.repository.mongo.CommentsRepository;
+import com.shuttle.major.service.CommentsService;
+import com.shuttle.major.utils.JwtUtils;
+import com.shuttle.major.utils.Utils;
+import lombok.extern.log4j.Log4j2;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @description: 评论服务实现类
+ * @author: DHY
+ * @created: 2021/02/17 13:20
+ */
+@Log4j2
+@Service
+public class CommentsServiceImp implements CommentsService {
+
+    @Resource
+    private OrderFetch orderFetch;
+
+    @Resource
+    private CommentsRepository commentsRepository;
+
+    @Resource
+    private MongoTemplate mongoTemplate;
+
+
+    /**
+     * 添加评论
+     *
+     * @param token    Token
+     * @param comments 评论
+     */
+    @Override
+    public void insert(String token, Comments comments) {
+        long userId = JwtUtils.getUserId(token);
+        comments.setUserId(userId);
+        boolean status = false;
+        try {
+            List<Orders> orders = new ObjectMapper().readValue(orderFetch.findByCid(userId).getData().toString(), List.class);
+            for (Orders order : orders) {
+                if (order.getStoreId() == comments.getStoreId() && order.getStatus() == 1) {
+                    commentsRepository.insert(comments);
+                    status = true;
+                    break;
+                }
+            }
+            if (!status) throw new BusinessException(0, "只有在此商店完成过订单的用户才能评论");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 删除评论
+     *
+     * @param comments 评论
+     * @param token    Token
+     */
+    @Override
+    public void delete(Comments comments, String token) {
+        long userId = JwtUtils.getUserId(token);
+        if (comments.getUserId() == userId || JwtUtils.is_admin(token)) {
+            commentsRepository.delete(comments);
+        } else throw new BusinessException(0, "只有当前用户才能删除该评论");
+    }
+
+    /**
+     * 更新评论
+     *
+     * @param comments 评论
+     * @param token    Token
+     */
+    @Override
+    public void update(Comments comments, String token) {
+        comments.setUserId(JwtUtils.getUserId(token));
+        commentsRepository.save(comments);
+    }
+
+    /**
+     * 根据商店id查询评论
+     *
+     * @param storeId 商店id
+     * @return 分页包装类
+     */
+    @Override
+    public Page findByStoreId(long storeId, Map<String, String> option) {
+        Utils.checkOption(option, null);
+
+        Page page = new Page<Comments>();
+        String _id = option.get("_id");
+        page.setPageSize(Integer.parseInt(option.get("pageSize")));
+        page.setPageNo(Integer.parseInt(option.get("pageNo")));
+
+        Criteria criteria = Criteria.where("storeId").is(storeId);
+
+        // 分页查询优化，不跳页，附带前一页最后一条记录的_id
+        if (_id != null) criteria = criteria.and("_id").gt(new ObjectId(_id));
+        Query query = new Query(criteria);
+
+        if (_id != null) query.limit(page.getPageSize());
+        else query.skip((page.getPageNo() - 1) * page.getPageSize()).limit(page.getPageSize());
+
+        int count = (int) mongoTemplate.count(new Query(Criteria.where("storeId").is(storeId)), Comments.class);
+        page.setCount(count);
+        page.setTotal((count + page.getPageSize() - 1) / page.getPageSize());
+        page.setList(mongoTemplate.find(query, Comments.class));
+        return page;
+    }
+
+    /**
+     * 查询全部评论
+     *
+     * @return 分页包装类
+     */
+    @Override
+    public Page<Comments> findAll(Map<String, String> option) {
+        Utils.checkOption(option, null);
+
+        Page page = new Page<Comments>();
+        String _id = option.get("_id");
+        page.setPageSize(Integer.parseInt(option.get("pageSize")));
+        page.setPageNo(Integer.parseInt(option.get("pageNo")));
+        Criteria criteria = new Criteria();
+
+        // 分页查询优化，不跳页，附带前一页最后一条记录的_id
+        if (_id != null) criteria = Criteria.where("_id").gt(new ObjectId(_id));
+        Query query = new Query(criteria);
+
+        if (_id != null) query.limit(page.getPageSize());
+        else query.skip((page.getPageNo() - 1) * page.getPageSize()).limit(page.getPageSize());
+
+        int count = (int) mongoTemplate.count(new Query(), Comments.class);
+        page.setCount(count);
+        page.setTotal((count + page.getPageSize() - 1) / page.getPageSize());
+        page.setList(mongoTemplate.find(query, Comments.class));
+        return page;
+    }
+}

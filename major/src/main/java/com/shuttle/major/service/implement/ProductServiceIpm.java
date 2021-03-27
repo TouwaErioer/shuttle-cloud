@@ -3,7 +3,6 @@ package com.shuttle.major.service.implement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.PageInterceptor;
 import com.shuttle.major.common.logger.LoggerHelper;
 import com.shuttle.major.config.exception.BusinessException;
 import com.shuttle.major.config.redis.RedisService;
@@ -11,8 +10,8 @@ import com.shuttle.major.entity.Orders;
 import com.shuttle.major.entity.Product;
 import com.shuttle.major.fetch.OrderFetch;
 import com.shuttle.major.mapper.ProductMapper;
-import com.shuttle.major.repository.EsPageHelper;
-import com.shuttle.major.repository.ProductRepository;
+import com.shuttle.major.repository.elasticsearch.EsPageHelper;
+import com.shuttle.major.repository.elasticsearch.ProductRepository;
 import com.shuttle.major.service.ProductService;
 import com.shuttle.major.service.StoreService;
 import com.shuttle.major.utils.JwtUtils;
@@ -73,7 +72,9 @@ public class ProductServiceIpm implements ProductService {
      * @param id    产品id
      * @param sales 销量
      */
+    @Override
     @Transient
+    @CacheEvict(value = "product", allEntries = true)
     public void addSales(long id, int sales) {
         int res = productMapper.addSales(id, sales);
         log.info("product addSales -> " + id + " for -> " + sales + " -> res " + res);

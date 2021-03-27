@@ -2,8 +2,8 @@ package com.shuttle.major.config.elasticsearch;
 
 import com.shuttle.major.entity.Product;
 import com.shuttle.major.entity.Store;
-import com.shuttle.major.repository.ProductRepository;
-import com.shuttle.major.repository.StoreRepository;
+import com.shuttle.major.repository.elasticsearch.ProductRepository;
+import com.shuttle.major.repository.elasticsearch.StoreRepository;
 import com.shuttle.major.service.ProductService;
 import com.shuttle.major.service.StoreService;
 import org.springframework.boot.ApplicationArguments;

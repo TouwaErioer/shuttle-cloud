@@ -28,4 +28,6 @@ public interface ProductService {
     Product findById(long id);
 
     boolean exist(long id);
+
+    void addSales(long id, int sales);
 }
