@@ -88,12 +88,12 @@ public class UserFallback implements UserFetch {
     }
 
     @Override
-    public void returnCall(HttpServletRequest request, HttpServletResponse response) {
+    public void returnCall() {
 
     }
 
     @Override
-    public void notifyCall(HttpServletRequest request) {
+    public void notifyCall() {
 
     }
 }

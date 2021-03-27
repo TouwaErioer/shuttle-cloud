@@ -1,6 +1,5 @@
 package com.shuttle.feign.fetch;
 
-import com.github.pagehelper.PageInfo;
 import com.shuttle.feign.entity.Orders;
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.fallback.OrdersFallback;

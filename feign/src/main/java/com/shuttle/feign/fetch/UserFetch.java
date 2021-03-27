@@ -55,11 +55,11 @@ public interface UserFetch {
     @GetMapping("/user/exist/{userId}")
     ReturnMessage<Object> exist(@PathVariable long userId);
 
-    @RequestMapping("/return")
+    @GetMapping("/return")
     @ResponseBody
-    void returnCall(HttpServletRequest request, HttpServletResponse response);
+    void returnCall();
 
     @RequestMapping("/notify")
     @ResponseBody
-    void notifyCall(HttpServletRequest request);
+    void notifyCall();
 }

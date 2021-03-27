@@ -13,6 +13,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/03/25 19:30
  */
+
 @Component
 public class CategoryFallback implements CategoryFetch {
     @Override

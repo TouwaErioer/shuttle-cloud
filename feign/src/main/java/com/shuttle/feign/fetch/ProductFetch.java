@@ -2,12 +2,13 @@ package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.Product;
 import com.shuttle.feign.entity.ReturnMessage;
+import com.shuttle.feign.fallback.ProductFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "product")
+@FeignClient(value = "major", fallback = ProductFallback.class)
 public interface ProductFetch {
 
     @PostMapping("/product/insert")
@@ -25,8 +26,8 @@ public interface ProductFetch {
     @GetMapping("/product/search/{keyword}")
     ReturnMessage<Object> search(@PathVariable String keyword, Map<String, String> option);
 
-    @GetMapping("/product/findAll")
-    ReturnMessage<Object> findAll(Map<String, String> option);
+    @RequestMapping(value = "/product/findAll", method = RequestMethod.GET)
+    ReturnMessage<Object> findAll(@RequestParam(value = "option", required = false) Map<String, String> option);
 
     @GetMapping("/product/findByStoreId/{storeId}")
     ReturnMessage<Object> findByStoreId(@PathVariable long storeId);

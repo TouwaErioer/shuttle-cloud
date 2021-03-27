@@ -1,4 +1,4 @@
-package com.shuttle.feign.controll;
+package com.shuttle.feign.controller;
 
 import com.shuttle.feign.annotation.Admin;
 import com.shuttle.feign.annotation.LoginUser;
@@ -47,18 +47,18 @@ public class ServiceController {
     @LoginUser
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public ReturnMessage<Object> findAll(@RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.success(serviceFetch.findAll(option));
+        return serviceFetch.findAll(option);
     }
 
     @LoginUser
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findById(@PathVariable long id) {
-        return ReturnMessageUtil.success(serviceFetch.findById(id));
+        return serviceFetch.findById(id);
     }
 
     @LoginUser
     @RequestMapping(value = "/exist/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> exist(@PathVariable long id) {
-        return ReturnMessageUtil.success(serviceFetch.exist(id));
+        return serviceFetch.exist(id);
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "category", fallback = CategoryFallback.class)
+@FeignClient(value = "major", fallback = CategoryFallback.class)
 public interface CategoryFetch {
 
     @PostMapping("/category/insert")

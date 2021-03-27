@@ -1,4 +1,4 @@
-package com.shuttle.feign.controll;
+package com.shuttle.feign.controller;
 
 import com.shuttle.feign.fetch.UserFetch;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @description:
@@ -23,13 +21,13 @@ public class PaymentController {
 
     @RequestMapping("/return")
     @ResponseBody
-    public void returnCall(HttpServletRequest request, HttpServletResponse response) {
-        userFetch.returnCall(request, response);
+    public void returnCall() {
+        userFetch.returnCall();
     }
 
     @RequestMapping("/notify")
     @ResponseBody
-    public void notifyCall(HttpServletRequest request) {
-        userFetch.notifyCall(request);
+    public void notifyCall() {
+        userFetch.notifyCall();
     }
 }

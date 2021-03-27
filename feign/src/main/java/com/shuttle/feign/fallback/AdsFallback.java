@@ -4,12 +4,14 @@ import com.shuttle.feign.entity.Ads;
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.fetch.AdsFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
+import org.springframework.stereotype.Component;
 
 /**
  * @description:
  * @author: DHY
  * @created: 2021/03/27 09:30
  */
+@Component
 public class AdsFallback implements AdsFetch {
     @Override
     public ReturnMessage<Object> insert(Ads ads, int expired) {

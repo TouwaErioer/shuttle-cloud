@@ -1,4 +1,4 @@
-package com.shuttle.feign.controll;
+package com.shuttle.feign.controller;
 
 import com.shuttle.feign.annotation.Admin;
 import com.shuttle.feign.annotation.LoginUser;

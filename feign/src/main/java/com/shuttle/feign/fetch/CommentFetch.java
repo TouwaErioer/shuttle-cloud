@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "major", fallback = CommentFallback.class)
+@FeignClient(value = "major-service", fallback = CommentFallback.class)
 public interface CommentFetch {
 
     @PostMapping("/comments/insert")

@@ -1,4 +1,4 @@
-package com.shuttle.feign.controll;
+package com.shuttle.feign.controller;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.fetch.FileFetch;

@@ -6,7 +6,7 @@ import com.shuttle.feign.fallback.AdsFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "major", fallback = AdsFallback.class)
+@FeignClient(value = "major-service", fallback = AdsFallback.class)
 public interface AdsFetch {
 
     @PostMapping("/poster/insert")

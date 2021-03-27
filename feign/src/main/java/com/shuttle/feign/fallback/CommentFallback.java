@@ -4,6 +4,7 @@ import com.shuttle.feign.entity.Comments;
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.fetch.CommentFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/03/27 09:30
  */
+@Component
 public class CommentFallback implements CommentFetch {
     @Override
     public ReturnMessage<Object> insert(String token, Comments comments) {

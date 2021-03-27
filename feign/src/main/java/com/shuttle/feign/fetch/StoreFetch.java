@@ -2,12 +2,13 @@ package com.shuttle.feign.fetch;
 
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.entity.Store;
+import com.shuttle.feign.fallback.StoreFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "store")
+@FeignClient(value = "major",fallback = StoreFallback.class)
 public interface StoreFetch {
 
     @PostMapping("/store/insert")

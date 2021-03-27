@@ -4,6 +4,7 @@ import com.shuttle.feign.entity.Product;
 import com.shuttle.feign.entity.ReturnMessage;
 import com.shuttle.feign.fetch.ProductFetch;
 import com.shuttle.feign.utils.ReturnMessageUtil;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author: DHY
  * @created: 2021/03/26 15:53
  */
+@Component
 public class ProductFallback implements ProductFetch {
     @Override
     public ReturnMessage<Object> insert(Product product) {
