@@ -31,7 +31,6 @@
                 <!--设置日志基础文件大小，超过该大小就触发日志文件滚动更新-->
                 <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
-            设置日志的文件个数上限，不设置默认为7个，超过大小后会被覆盖；依赖于filePattern中的%i
             <DefaultRolloverStrategy max="100"/>
         </RollingFile>
 
@@ -54,11 +53,11 @@
 
     <Loggers>
 
-        <Logger level="info" name="com.example.hope.service.serviceIpm">
+        <Logger level="info" name="com.shuttle.orders.service.implement">
             <AppenderRef ref="infoFileAppender" level="info"/>
         </Logger>
 
-        <Logger level="warning" name="com.example.hope" additivity="false">
+        <Logger level="warning" name="com.shuttle.orders" additivity="false">
             <AppenderRef ref="errorFileAppender" level="error"/>
         </Logger>
 
