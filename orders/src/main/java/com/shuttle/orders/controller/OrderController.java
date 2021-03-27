@@ -4,7 +4,6 @@ import com.shuttle.orders.entity.Orders;
 import com.shuttle.orders.entity.ReturnMessage;
 import com.shuttle.orders.service.OrderService;
 import com.shuttle.orders.utils.ReturnMessageUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,7 +17,7 @@ import java.util.Map;
  * @created: 2020/10/25 14:20
  */
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Resource

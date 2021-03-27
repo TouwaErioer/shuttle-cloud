@@ -1,5 +1,7 @@
 package com.shuttle.orders.service.implement;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shuttle.orders.common.logger.LoggerHelper;
@@ -155,6 +157,23 @@ public class OrderServiceIpm implements OrderService {
     }
 
     /**
+     * 对象转json再转对象
+     *
+     * @param object 对象
+     * @return object 对象
+     */
+    private Object conversion(Object object, Class clazz) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String json = objectMapper.writeValueAsString(object);
+            return objectMapper.readValue(json, clazz);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * 补充orders的user,product属性
      *
      * @param orders 订单类
@@ -162,10 +181,10 @@ public class OrderServiceIpm implements OrderService {
      */
     private List<Orders> merge(List<Orders> orders) {
         for (Orders order : orders) {
-            User client = (User) BusinessException.checkReturnMessage(userFeign.findById(order.getCid()));
-            User server = (User) BusinessException.checkReturnMessage(userFeign.findById(order.getSid()));
-            Product product = (Product) BusinessException.checkReturnMessage(productFeign.findById(order.getPid()));
-            Store store = (Store) BusinessException.checkReturnMessage(storeFeign.findById(product.getStoreId()));
+            User client = (User) conversion(BusinessException.checkReturnMessage(userFeign.findById(order.getCid())), User.class);
+            User server = (User) conversion(BusinessException.checkReturnMessage(userFeign.findById(order.getSid())), User.class);
+            Product product = (Product) conversion(BusinessException.checkReturnMessage(productFeign.findById(order.getPid())),Product.class);
+            Store store = (Store) conversion(BusinessException.checkReturnMessage(storeFeign.findById(product.getStoreId())),Store.class);
             order.setClient(client);
             order.setService(server);
             order.setProduct(product);
@@ -173,6 +192,7 @@ public class OrderServiceIpm implements OrderService {
             order.setStoreName(store.getName());
             order.setServiceId(store.getServiceId());
         }
+
         return orders;
     }
 
@@ -188,7 +208,8 @@ public class OrderServiceIpm implements OrderService {
         Utils.checkOption(option, Orders.class);
         String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
         PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
-        return PageInfo.of(merge(orderMapper.select(null, null, null)));
+        List<Orders> orders = merge(orderMapper.select(null, null, null));
+        return PageInfo.of(orders);
     }
 
     /**

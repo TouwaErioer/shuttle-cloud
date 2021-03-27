@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("major")
+@FeignClient(value = "major")
 public interface ProductFeign {
 
     @GetMapping("/product/exist/{id}")
@@ -16,6 +16,6 @@ public interface ProductFeign {
     @PostMapping("/product/addSales")
     ReturnMessage<Object> addSales(@RequestParam("id") long id, @RequestParam("sales") int sales);
 
-    @GetMapping("/product/rank/{id}")
+    @GetMapping("/product/findById/{id}")
     ReturnMessage<Object> findById(@PathVariable long id);
 }

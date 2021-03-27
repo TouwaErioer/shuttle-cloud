@@ -11,9 +11,9 @@ public class Provider {
 
     public static String selectByKey(Map<String, Object> para) {
         StringBuilder stringBuffer = new StringBuilder();
-        stringBuffer.append("select * from orders where ");
+        stringBuffer.append("select * from orders");
         if (para.get("key") != null && para.get("id") != null) {
-            stringBuffer.append("orders.").append(para.get("key")).append(" = ")
+            stringBuffer.append(" where orders.").append(para.get("key")).append(" = ")
                     .append(para.get("id"));
             if (para.get("status") != null && !para.get("key").equals("status"))
                 stringBuffer.append(" and status = ").append(para.get("status"));

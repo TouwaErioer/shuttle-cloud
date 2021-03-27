@@ -1,5 +1,6 @@
 package com.shuttle.orders.config.exception;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shuttle.orders.entity.ReturnMessage;
 import lombok.Data;
 
@@ -22,6 +23,7 @@ public class BusinessException extends RuntimeException {
 
     public static Object checkReturnMessage(ReturnMessage returnMessage) {
         if (returnMessage.getCode() < 1) {
+            System.out.println(returnMessage);
             throw new BusinessException(returnMessage.getCode(), returnMessage.getMessage());
         }
         return returnMessage.getData();
