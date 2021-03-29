@@ -1,0 +1,16 @@
+server:
+  port: ${port}
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${gitUri}
+          username: ${gitUserName}
+          password: ${gitPassword}
+security:
+  user:
+    name: ${securityName}
+    password: ${securityPassword}
