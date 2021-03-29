@@ -14,3 +14,9 @@ security:
   user:
     name: ${securityName}
     password: ${securityPassword}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eurekaUser}:${eurekaPassword}@${eurekaUrl}:${eurekaPort}/eureka/
