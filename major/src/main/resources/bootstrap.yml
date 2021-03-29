@@ -1,9 +1,16 @@
 mybatis:
-  type-aliases-package: com.example.hope.model
+  type-aliases-package: com.shuttle.major
   mapper-locations: classpath:mybatis/mapper/*.xml
 spring:
   application:
     name: major
+  cloud:
+    config:
+      label: ${configLabel}
+      uri: ${configUrl}
+      name: ${configName}
+      username: ${configSecurityName}
+      password: ${configSecurityPassword}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${dbPasswd}
