@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 logs/
+shuttle.iml
+shuttle.ipr
+shuttle.iws
 
 ### STS ###
 .apt_generated
