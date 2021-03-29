@@ -7,7 +7,8 @@ logs/
 shuttle.iml
 shuttle.ipr
 shuttle.iws
-
+private.txt
+public.txt
 ### STS ###
 .apt_generated
 .classpath
