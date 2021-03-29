@@ -27,8 +27,13 @@ spring:
   elasticsearch:
     rest:
       uris: ${elasticsearchUrl}
-logging:
-  config: classpath:log4j2.xml
+  cloud:
+    config:
+      label: ${configLabel}
+      uri: ${configUrl}
+      name: ${configName}
+      username: ${configSecurityName}
+      password: ${configSecurityPassword}
 pagehelper:
   helperDialect: mysql
   params: count=countSql
@@ -41,7 +46,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://shuttle:shuttle@localhost:8001/eureka/
+      defaultZone: http://${eurekaUser}:${eurekaPassword}@${eurekaUrl}:${eurekaPort}/eureka/
 alipay:
   appId: ${appid}
   gateway: ${gateway}
