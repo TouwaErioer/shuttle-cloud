@@ -1,0 +1,154 @@
+2021-03-27 16:17:50,432 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-7] Index: 0, Size: 0
+2021-03-27 16:18:03,900 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-2] Index: 0, Size: 0
+2021-03-27 16:21:04,927 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-8] Index: 0, Size: 0
+2021-03-27 16:21:45,517 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-3] Index: 0, Size: 0
+2021-03-27 16:23:08,606 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-4] Index: 0, Size: 0
+2021-03-27 16:23:08,622 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-7] Index: 0, Size: 0
+2021-03-27 16:25:30,094 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-3] Index: 0, Size: 0
+2021-03-27 16:33:43,216 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-9] Index: 0, Size: 0
+2021-03-27 16:43:29,991 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-3] Index: 0, Size: 0
+2021-03-27 16:43:30,041 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-10] Index: 0, Size: 0
+2021-03-27 16:46:00,336 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-7] Index: 0, Size: 0
+2021-03-27 16:48:50,805 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-2] Index: 0, Size: 0
+2021-03-27 17:03:40,552 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-2] Required List parameter 'user' is not present
+2021-03-27 17:03:50,127 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-3] Required List parameter 'user' is not present
+2021-03-27 17:03:53,373 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-4] Required List parameter 'user' is not present
+2021-03-27 17:04:17,968 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-5] 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch-Inline
+### The error occurred while setting parameters
+### SQL: select * form orders where id in          ( )
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+2021-03-27 17:04:59,324 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-6] Failed to convert value of type 'java.lang.String' to required type 'java.util.List'; nested exception is java.lang.NumberFormatException: For input string: "[1,2,3]"
+2021-03-27 17:06:15,695 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] Required List parameter 'users' is not present
+2021-03-27 17:06:24,686 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-2] Failed to convert value of type 'java.lang.String' to required type 'java.util.List'; nested exception is java.lang.NumberFormatException: For input string: "[1,2,3]"
+2021-03-27 17:08:17,674 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:08:21,309 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-2] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:08:38,053 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-3] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:08:55,884 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-4] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:08:56,593 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-6] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:08:56,991 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-5] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:09:08,810 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-7] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:09:30,569 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-8] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:09:50,459 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-9] 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch-Inline
+### The error occurred while setting parameters
+### SQL: select * form orders where id in          ( )
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+2021-03-27 17:09:56,449 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-10] 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch-Inline
+### The error occurred while setting parameters
+### SQL: select * form orders where id in          ( )
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         ( )' at line 1
+2021-03-27 17:12:20,124 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.binding.BindingException: Parameter 'users' not found. Available parameters are [collection, list]
+2021-03-27 17:14:05,357 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         (  
+            1
+         , 
+            2
+   ' at line 1
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch-Inline
+### The error occurred while setting parameters
+### SQL: select * form orders where id in          (               ?          ,              ?          ,              ?          )
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         (  
+            1
+         , 
+            2
+   ' at line 1
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form orders where id in
+         (  
+            1
+         , 
+            2
+   ' at line 1
+2021-03-27 17:15:44,328 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.executor.ExecutorException: A query was run and no Result Maps were found for the Mapped Statement 'com.shuttle.user.mapper.UserMapper.selectBatch'.  It's likely that neither a Result Type nor a Result Map was specified.
+2021-03-27 17:17:39,653 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.executor.ExecutorException: A query was run and no Result Maps were found for the Mapped Statement 'com.shuttle.user.mapper.UserMapper.selectBatch'.  It's likely that neither a Result Type nor a Result Map was specified.
+2021-03-27 17:19:37,622 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from orders where id in (                        ?          ,              ?          ,              ?                   )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 17:20:59,374 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from orders where id in          (               ?          ,              ?          ,              ?          )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 17:21:35,943 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.binding.BindingException: Parameter 'users' not found. Available parameters are [collection, list]
+2021-03-27 17:24:48,294 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from orders where id in          (               ?          ,              ?          ,              ?          )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 17:27:14,233 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from user where id in          (               ?          ,              ?          ,              ?          )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 17:29:47,464 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from user where id in (                        ?          ,              ?          ,              ?                   )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 17:32:52,042 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:32:54,083 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-2] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:15,587 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-3] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:17,033 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-4] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:17,596 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-5] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:18,362 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-6] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:18,899 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-7] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:38,100 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-8] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:38,760 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-9] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:33:59,448 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-8] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:34:00,386 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-10] Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported
+2021-03-27 17:34:43,365 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from user where id in (                        ?          ,              ?          ,              ?                   )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 17:35:21,117 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.UnsupportedOperationException
+### The error may exist in file [D:\Project\shuttle\user\target\classes\mybatis\mapper\UserMapper.xml]
+### The error may involve com.shuttle.user.mapper.UserMapper.selectBatch
+### The error occurred while handling results
+### SQL: select * from user where id in (                        ?          ,              ?                   )
+### Cause: java.lang.UnsupportedOperationException
+2021-03-27 22:34:49,761 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-8] Index: 0, Size: 0
+2021-03-27 22:38:20,668 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-4] Index: 0, Size: 0
+2021-03-27 22:39:45,199 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-9] Index: 0, Size: 0
+2021-03-27 22:41:15,104 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-5] Index: 0, Size: 0
+2021-03-27 22:43:26,282 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-5] Index: 0, Size: 0
+2021-03-27 22:44:00,871 ERROR com.shuttle.user.config.exception.ExceptionHandle [http-nio-8010-exec-1] Index: 0, Size: 0
+2021-03-27 23:34:01,799 ERROR com.shuttle.feign.config.exception.ExceptionHandle [http-nio-8002-exec-5] token过期
+2021-03-27 23:34:59,538 ERROR com.shuttle.feign.config.exception.ExceptionHandle [http-nio-8002-exec-2] 无token,请重新登陆

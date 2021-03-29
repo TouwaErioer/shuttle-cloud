@@ -18,6 +18,8 @@
         <module>eureka</module>
         <module>user</module>
         <module>feign</module>
+        <module>orders</module>
+        <module>major</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

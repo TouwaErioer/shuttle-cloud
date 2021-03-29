@@ -77,10 +77,6 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB # 单个文件的最大值
-
-logging:
-  config: classpath:log4j2.xml
-
 pagehelper:
   helperDialect: mysql
   params: count=countSql

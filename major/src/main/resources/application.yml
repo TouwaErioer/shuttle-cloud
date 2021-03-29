@@ -74,10 +74,6 @@ spring:
     mongodb:
       uri: mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:27017/?authSource=admin
       database: shuttle
-
-logging:
-  config: classpath:log4j2.xml
-
 pagehelper:
   helperDialect: mysql
   params: count=countSql
