@@ -2,7 +2,14 @@ server:
   port: ${port}
 spring:
   application:
-    name: ${name}
+    name: feign
+  cloud:
+    config:
+      label: ${configLabel}
+      uri: ${configUrl}
+      name: ${configName}
+      username: ${configSecurityName}
+      password: ${configSecurityPassword}
   main:
     allow-bean-definition-overriding: true
 eureka:
@@ -10,7 +17,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${user}:${password}@${eureka-url}:${eureka-port}/eureka/
+      defaultZone: http://${eurekaUser}:${eurekaPassword}@${eurekaUrl}:${eurekaPort}/eureka/
 
 feign:
   hystrix:
