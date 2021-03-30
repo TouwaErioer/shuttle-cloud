@@ -6,8 +6,6 @@ import com.shuttle.feign.fallback.UserFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @FeignClient(value = "user", fallback = UserFallback.class)
@@ -44,7 +42,7 @@ public interface UserFetch {
     ReturnMessage<Object> findById(@PathVariable long id);
 
     @GetMapping("/user/findAll")
-    ReturnMessage<Object> findAll(Map<String, String> option);
+    ReturnMessage<Object> findAll(@RequestParam(value = "option") Map<String, String> option);
 
     @GetMapping("/user/search")
     ReturnMessage<Object> search(@PathVariable String keyword, @RequestParam(value = "option") Map<String, String> option);

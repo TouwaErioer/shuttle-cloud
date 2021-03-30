@@ -153,6 +153,7 @@ public class UserServiceIpm implements UserService {
     @Transient
     @CacheEvict(value = "user", allEntries = true)
     public void reduceScore(long id) {
+        // todo 只允许自己和管理员操作
         if (findByScore(id) == 0) {
             throw new BusinessException(-1, "用户点数为0");
         }

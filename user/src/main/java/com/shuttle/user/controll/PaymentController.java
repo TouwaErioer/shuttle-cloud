@@ -1,10 +1,12 @@
 package com.shuttle.user.controll;
 
+import com.alipay.api.AlipayApiException;
 import com.shuttle.user.service.PayService;
 import com.shuttle.user.service.serviceImp.PayServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -23,6 +25,10 @@ public class PaymentController {
     @Resource
     private PayService payService;
 
+    @RequestMapping(value = "/recharge", method = RequestMethod.POST)
+    public String recharge(long userId, int total) throws AlipayApiException {
+        return payService.alipay(userId, total);
+    }
 
     @RequestMapping("/return")
     @ResponseBody
