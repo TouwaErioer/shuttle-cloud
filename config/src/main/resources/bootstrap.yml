@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: config
+  rabbitmq:
+    host: 107.175.62.153
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     config:
       server:
@@ -20,3 +25,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://${eurekaUser}:${eurekaPassword}@${eurekaUrl}:${eurekaPort}/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
