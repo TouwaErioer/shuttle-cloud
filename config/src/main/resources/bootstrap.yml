@@ -15,10 +15,10 @@ spring:
           uri: ${gitUri}
           username: ${gitUserName}
           password: ${gitPassword}
-security:
-  user:
-    name: ${securityName}
-    password: ${securityPassword}
+  security:
+    user:
+      name: ${securityName}
+      password: ${securityPassword}
 eureka:
   client:
     register-with-eureka: true
