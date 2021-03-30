@@ -1,10 +1,10 @@
-package com.shuttle.feign.config.interceptor;
+package com.shuttle.orders.config.interceptor;
 
-import com.shuttle.feign.annotation.Admin;
-import com.shuttle.feign.annotation.LoginUser;
-import com.shuttle.feign.annotation.PassToken;
-import com.shuttle.feign.config.exception.BusinessException;
-import com.shuttle.feign.utils.JwtUtils;
+import com.shuttle.orders.annotation.Admin;
+import com.shuttle.orders.annotation.LoginUser;
+import com.shuttle.orders.annotation.PassToken;
+import com.shuttle.orders.config.exception.BusinessException;
+import com.shuttle.orders.utils.JwtUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

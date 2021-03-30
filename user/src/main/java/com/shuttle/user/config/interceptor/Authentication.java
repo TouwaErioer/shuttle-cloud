@@ -1,10 +1,10 @@
-package com.shuttle.feign.config.interceptor;
+package com.shuttle.user.config.interceptor;
 
-import com.shuttle.feign.annotation.Admin;
-import com.shuttle.feign.annotation.LoginUser;
-import com.shuttle.feign.annotation.PassToken;
-import com.shuttle.feign.config.exception.BusinessException;
-import com.shuttle.feign.utils.JwtUtils;
+import com.shuttle.user.annotation.Admin;
+import com.shuttle.user.annotation.LoginUser;
+import com.shuttle.user.annotation.PassToken;
+import com.shuttle.user.config.exception.BusinessException;
+import com.shuttle.user.utils.JwtUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Enumeration;
 
 public class Authentication implements HandlerInterceptor {
 

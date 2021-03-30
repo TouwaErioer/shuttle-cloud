@@ -1,10 +1,10 @@
-package com.shuttle.feign.config.interceptor;
+package com.shuttle.major.interceptor;
 
-import com.shuttle.feign.annotation.Admin;
-import com.shuttle.feign.annotation.LoginUser;
-import com.shuttle.feign.annotation.PassToken;
-import com.shuttle.feign.config.exception.BusinessException;
-import com.shuttle.feign.utils.JwtUtils;
+import com.shuttle.major.annotation.Admin;
+import com.shuttle.major.annotation.LoginUser;
+import com.shuttle.major.annotation.PassToken;
+import com.shuttle.major.config.exception.BusinessException;
+import com.shuttle.major.utils.JwtUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +17,7 @@ public class Authentication implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String token = request.getHeader("authorization");
+        String token = request.getHeader("authentication");
 
         // 如果不是映射到方法直接通过
         if (!(handler instanceof HandlerMethod)) return true;
