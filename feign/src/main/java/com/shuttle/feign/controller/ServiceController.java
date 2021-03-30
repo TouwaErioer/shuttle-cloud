@@ -19,9 +19,6 @@ public class ServiceController {
     @Resource
     private ServiceFetch serviceFetch;
 
-    @Resource
-    private CategoryFetch categoryFetch;
-
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ReturnMessage<Object> insert(Services services) {
         return serviceFetch.insert(services);
@@ -29,9 +26,7 @@ public class ServiceController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ReturnMessage<Object> delete(long id) {
-        BusinessException.check(categoryFetch.deleteByServiceId(id));
-        BusinessException.check(serviceFetch.delete(id));
-        return ReturnMessageUtil.success();
+        return serviceFetch.delete(id);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
