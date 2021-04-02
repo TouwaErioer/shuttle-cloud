@@ -140,12 +140,13 @@ public class OrderServiceIpm implements OrderService {
 
     /**
      * 根据用户id删除订单
+     *
      * @param userId 用户id
      */
     @Override
     @Transient
-    @CacheEvict(value = "order",allEntries = true)
-    public void deleteByUserId(long userId){
+    @CacheEvict(value = "order", allEntries = true)
+    public void deleteByUserId(long userId) {
         int res = orderMapper.deleteByUserId(userId);
         log.info(LoggerHelper.logger(userId, res));
     }
@@ -193,10 +194,11 @@ public class OrderServiceIpm implements OrderService {
      */
     private List<Orders> merge(List<Orders> orders) {
         for (Orders order : orders) {
+            // todo 批量查询
             User client = (User) conversion(BusinessException.checkReturnMessage(userFeign.findById(order.getCid())), User.class);
             User server = (User) conversion(BusinessException.checkReturnMessage(userFeign.findById(order.getSid())), User.class);
-            Product product = (Product) conversion(BusinessException.checkReturnMessage(productFeign.findById(order.getPid())),Product.class);
-            Store store = (Store) conversion(BusinessException.checkReturnMessage(storeFeign.findById(product.getStoreId())),Store.class);
+            Product product = (Product) conversion(BusinessException.checkReturnMessage(productFeign.findById(order.getPid())), Product.class);
+            Store store = (Store) conversion(BusinessException.checkReturnMessage(storeFeign.findById(product.getStoreId())), Store.class);
             order.setClient(client);
             order.setService(server);
             order.setProduct(product);

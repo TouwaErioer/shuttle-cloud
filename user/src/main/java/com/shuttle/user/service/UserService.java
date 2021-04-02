@@ -22,7 +22,7 @@ public interface UserService {
 
     void addScore(long id, int quantity);
 
-    void reduceScore(long id);
+    void reduceScore(long id, String token);
 
     int findByScore(long id);
 

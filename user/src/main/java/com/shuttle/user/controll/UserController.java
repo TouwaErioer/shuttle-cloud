@@ -107,8 +107,8 @@ public class UserController {
 
     @LoginUser
     @RequestMapping(value = "/reduceScore/{userId}", method = RequestMethod.GET)
-    public ReturnMessage<Object> reduceScore(@PathVariable long userId) {
-        userService.reduceScore(userId);
+    public ReturnMessage<Object> reduceScore(@PathVariable long userId,HttpServletRequest request) {
+        userService.reduceScore(userId,request.getHeader("authorization"));
         return ReturnMessageUtil.success();
     }
 

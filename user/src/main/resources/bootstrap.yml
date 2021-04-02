@@ -5,11 +5,22 @@ server:
 spring:
   application:
     name: user
+  rabbitmq:
+    host: ${mqHost1}
+    port: 5672
+    username: guest
+    password: guest
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        retry:
+          enabled: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${dbPasswd}
-    url: jdbc:mysql://${dbHost}:3306/${dbName}?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: ${dbUser}
+    password: ${dbPasswd1}
+    url: jdbc:mysql://${dbHost1}:3306/${dbName1}?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: ${dbUser1}
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -84,3 +95,8 @@ feign:
     max-connections-per-route: 50
     okhttp:
       enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh"

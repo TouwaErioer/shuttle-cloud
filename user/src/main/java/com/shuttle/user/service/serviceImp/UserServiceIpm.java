@@ -94,7 +94,7 @@ public class UserServiceIpm implements UserService {
     @CacheEvict(value = "user", allEntries = true)
     public void delete(long id) {
         int res = userMapper.delete(id);
-        BusinessException.checkReturnMessage(ordersFetch.deleteByUserId(id));
+        ordersFetch.deleteByUserId(id);
         log.info(LoggerHelper.logger(id, res));
         BusinessException.check(res, "删除失败");
         userRepository.deleteById(id);
@@ -152,14 +152,18 @@ public class UserServiceIpm implements UserService {
     @Override
     @Transient
     @CacheEvict(value = "user", allEntries = true)
-    public void reduceScore(long id) {
-        // todo 只允许自己和管理员操作
-        if (findByScore(id) == 0) {
-            throw new BusinessException(-1, "用户点数为0");
+    public void reduceScore(long id, String token) {
+        long userId = JwtUtils.getUserId(token);
+        if (userId == id || JwtUtils.is_admin(token)) {
+            if (findByScore(id) == 0) {
+                throw new BusinessException(-1, "用户点数为0");
+            }
+            int res = userMapper.reduceScore(id);
+            log.info(LoggerHelper.logger(id, res));
+            BusinessException.check(res, "减少点数失败");
+        } else {
+            throw new BusinessException(-1, "只允许本人和管理员操作");
         }
-        int res = userMapper.reduceScore(id);
-        log.info(LoggerHelper.logger(id, res));
-        BusinessException.check(res, "减少点数失败");
     }
 
     /**
