@@ -1,11 +1,13 @@
 package com.shuttle.major.mapper;
 
 import com.shuttle.major.common.provider.StoreProvider;
+import com.shuttle.major.entity.Product;
 import com.shuttle.major.entity.Store;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -19,6 +21,8 @@ public interface StoreMapper {
 
     @Update("update store set name = #{name}, serviceId = #{serviceId}, categoryId = #{categoryId}, image = #{image}, rate = #{rate}, sales = #{sales} where id = #{id}")
     int update(Store store);
+
+    List<Store> batchQueryStore(Map<String, Object> storeIdsParam);
 
     @SelectProvider(type = StoreProvider.class, method = "selectByKey")
     @Results(value = {

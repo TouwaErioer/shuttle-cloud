@@ -9,6 +9,7 @@ import com.shuttle.major.utils.ReturnMessageUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,6 +44,12 @@ public class StoreController {
     public ReturnMessage<Object> update(Store store) {
         storeService.update(store);
         return ReturnMessageUtil.sucess();
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/batchQueryStoreId", method = RequestMethod.POST)
+    public ReturnMessage<Object> batchQueryStoreId(@RequestParam List<Long> storeIds) {
+        return ReturnMessageUtil.sucess(storeService.batchQueryStore(storeIds));
     }
 
     @Admin

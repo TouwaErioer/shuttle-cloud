@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.shuttle.major.common.logger.LoggerHelper;
 import com.shuttle.major.config.exception.BusinessException;
 import com.shuttle.major.config.redis.RedisService;
+import com.shuttle.major.entity.Product;
 import com.shuttle.major.entity.Store;
 import com.shuttle.major.mapper.StoreMapper;
 import com.shuttle.major.repository.elasticsearch.EsPageHelper;
@@ -142,6 +143,20 @@ public class StoreServiceImp implements StoreService {
         log.info(LoggerHelper.logger(store, res));
         BusinessException.check(res, "更新失败");
         storeRepository.save(store);
+    }
+
+    /**
+     * 批量根据商店id查询商店
+     *
+     * @param storeIds 商店id集合
+     * @return 商店集合
+     */
+    @Override
+    @Cacheable(value = "store", key = "methodName + #storeIds.toString()")
+    public List<Store> batchQueryStore(List<Long> storeIds) {
+        Map<String, Object> storeIdsParam = new HashMap<>();
+        storeIdsParam.put("storeIds", storeIds);
+        return storeMapper.batchQueryStore(storeIdsParam);
     }
 
     /**

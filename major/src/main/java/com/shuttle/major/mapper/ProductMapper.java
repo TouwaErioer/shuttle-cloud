@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -19,6 +20,8 @@ public interface ProductMapper {
 
     @Update("update product set name = #{name},price = #{price},image = #{image},rate = #{rate},storeId = #{storeId}, sales = #{sales} where id = #{id}")
     int update(Product product);
+
+    List<Product> batchQueryProduct(Map<String, Object> productIdsParam);
 
     @SelectProvider(type = ProductProvider.class, method = "selectByKey")
     @Results(value = {

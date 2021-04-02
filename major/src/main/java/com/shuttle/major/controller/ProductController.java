@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -38,6 +39,12 @@ public class ProductController {
     public ReturnMessage<Object> updateProduct(Product product) {
         productService.update(product);
         return ReturnMessageUtil.sucess();
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/batchQueryProductId", method = RequestMethod.POST)
+    public ReturnMessage<Object> batchQueryProductId(@RequestParam List<Long> productIds,HttpServletRequest request) {
+        return ReturnMessageUtil.sucess(productService.batchQueryProduct(productIds));
     }
 
     @Admin

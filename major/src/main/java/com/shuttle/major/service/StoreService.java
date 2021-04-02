@@ -1,6 +1,7 @@
 package com.shuttle.major.service;
 
 import com.github.pagehelper.PageInfo;
+import com.shuttle.major.entity.Product;
 import com.shuttle.major.entity.Store;
 import org.springframework.data.elasticsearch.core.SearchHits;
 
@@ -20,6 +21,8 @@ public interface StoreService {
     void sales(long id, int quantity);
 
     SearchHits search(String keyword, Map<String, String> option);
+
+    List<Store> batchQueryStore(List<Long> StoreIds);
 
     PageInfo<Store> findAll(Map<String, String> option);
 

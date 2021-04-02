@@ -1,5 +1,6 @@
 mybatis:
   type-aliases-package: com.shuttle.user.mapper
+  mapper-locations: classpath:mybatis/mapper/*.xml
 server:
   port: ${port}
 spring:

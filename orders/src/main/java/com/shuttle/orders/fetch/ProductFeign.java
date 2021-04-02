@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @FeignClient(value = "major")
 public interface ProductFeign {
 
@@ -18,4 +20,7 @@ public interface ProductFeign {
 
     @GetMapping("/product/findById/{id}")
     ReturnMessage<Object> findById(@PathVariable long id);
+
+    @PostMapping("/product/batchQueryProductId")
+    ReturnMessage<Object> batchQueryByProductId(@RequestParam List<Long> productIds);
 }

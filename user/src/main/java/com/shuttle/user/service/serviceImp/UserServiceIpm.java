@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,6 +188,20 @@ public class UserServiceIpm implements UserService {
     @Cacheable(value = "user", key = "methodName + #id")
     public List<User> findById(long id) {
         return userMapper.findUserById(id);
+    }
+
+    /**
+     * 批量根据用户id查询用户
+     *
+     * @param userIds 用户id集合
+     * @return 用户集合
+     */
+    @Override
+    @Cacheable(value = "user", key = "methodName + #userIds.toString()")
+    public List<User> batchQueryByUserId(List<Long> userIds) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userIds", userIds);
+        return userMapper.batchQuery(map);
     }
 
     /**

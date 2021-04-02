@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -27,6 +28,8 @@ public interface UserMapper {
 
     @Update("update user set score = score - 1 where id = #{id}")
     int reduceScore(long id);
+
+    List<User> batchQuery(Map<String, Object> userIdsParam);
 
     @Select("select id,phone,address,admin,score,name from user where id = #{id}")
     List<User> findUserById(long id);

@@ -1,6 +1,7 @@
 package com.shuttle.orders.service.implement;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -27,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -170,16 +172,17 @@ public class OrderServiceIpm implements OrderService {
     }
 
     /**
-     * 对象转json再转对象
+     * 集合对象 -> json -> 对象集合
      *
      * @param object 对象
      * @return object 对象
      */
-    private Object conversion(Object object, Class clazz) {
+    private List conversion(Object object, Class clazz) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String json = objectMapper.writeValueAsString(object);
-            return objectMapper.readValue(json, clazz);
+            JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, clazz);
+            return objectMapper.readValue(json, javaType);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -193,18 +196,53 @@ public class OrderServiceIpm implements OrderService {
      * @return orders 订单类
      */
     private List<Orders> merge(List<Orders> orders) {
+        List<Long> clientUserIds = new ArrayList<>();
+        List<Long> serverUserIds = new ArrayList<>();
+        List<Long> productIds = new ArrayList<>();
+        List<Long> storeIds = new ArrayList<>();
         for (Orders order : orders) {
-            // todo 批量查询
-            User client = (User) conversion(BusinessException.checkReturnMessage(userFeign.findById(order.getCid())), User.class);
-            User server = (User) conversion(BusinessException.checkReturnMessage(userFeign.findById(order.getSid())), User.class);
-            Product product = (Product) conversion(BusinessException.checkReturnMessage(productFeign.findById(order.getPid())), Product.class);
-            Store store = (Store) conversion(BusinessException.checkReturnMessage(storeFeign.findById(product.getStoreId())), Store.class);
-            order.setClient(client);
-            order.setService(server);
-            order.setProduct(product);
-            order.setStoreId(store.getId());
-            order.setStoreName(store.getName());
-            order.setServiceId(store.getServiceId());
+            clientUserIds.add(order.getCid());
+            serverUserIds.add(order.getSid());
+            productIds.add(order.getPid());
+            storeIds.add(order.getStoreId());
+        }
+        // 批量查询
+        List<User> clients = conversion(BusinessException.checkReturnMessage(userFeign.batchQueryByUserId(clientUserIds)), User.class);
+        List<User> servers = conversion(BusinessException.checkReturnMessage(userFeign.batchQueryByUserId(serverUserIds)), User.class);
+        List<Product> products = conversion(BusinessException.checkReturnMessage(productFeign.batchQueryByProductId(productIds)), Product.class);
+        List<Store> stores = conversion(BusinessException.checkReturnMessage(storeFeign.batchQueryByStoreId(storeIds)), Store.class);
+
+        // 填充属性
+        for (Orders order : orders) {
+            if (clients != null) {
+                for (User user : clients) {
+                    if (order.getCid() == user.getId()) {
+                        order.setClient(user);
+                    }
+                }
+            }
+            if (servers != null) {
+                for (User user : servers) {
+                    if (order.getSid() == user.getId()) {
+                        order.setService(user);
+                    }
+                }
+            }
+            if (products != null) {
+                for (Product product : products) {
+                    if (order.getPid() == product.getId()) {
+                        order.setProduct(product);
+                    }
+                }
+            }
+            if (stores != null) {
+                for (Store store : stores) {
+                    if (order.getStoreId() == store.getId()) {
+                        order.setStoreName(store.getName());
+                        order.setServiceId(store.getServiceId());
+                    }
+                }
+            }
         }
 
         return orders;

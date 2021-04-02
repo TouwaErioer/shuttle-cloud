@@ -164,6 +164,20 @@ public class ProductServiceIpm implements ProductService {
     }
 
     /**
+     * 批量根据产品id查询产品
+     *
+     * @param productIds 产品id集合
+     * @return 产品集合
+     */
+    @Override
+    @Cacheable(value = "product", key = "methodName + #productIds.toString()")
+    public List<Product> batchQueryProduct(List<Long> productIds) {
+        Map<String, Object> productIdsParam = new HashMap<>();
+        productIdsParam.put("productIds", productIds);
+        return productMapper.batchQueryProduct(productIdsParam);
+    }
+
+    /**
      * 查询全部产品
      *
      * @return 分页包装类

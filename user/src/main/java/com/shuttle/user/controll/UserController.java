@@ -73,6 +73,12 @@ public class UserController {
         return ReturnMessageUtil.success(userService.findById(id).get(0));
     }
 
+    @LoginUser
+    @RequestMapping(value = "/batchQueryByUserId", method = RequestMethod.POST)
+    public ReturnMessage<Object> batchQueryByUserId(@RequestParam List<Long> userIds){
+        return ReturnMessageUtil.success(userService.batchQueryByUserId(userIds));
+    }
+
     @Admin
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public ReturnMessage<Object> findAll(@RequestParam Map<String, String> option) {
