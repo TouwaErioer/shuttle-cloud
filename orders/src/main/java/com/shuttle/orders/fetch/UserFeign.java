@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @FeignClient(value = "user")
 public interface UserFeign {
@@ -22,5 +23,5 @@ public interface UserFeign {
     ReturnMessage<Object> findById(@PathVariable long id);
 
     @PostMapping("/user/batchQueryByUserId")
-    ReturnMessage<Object> batchQueryByUserId(@RequestParam List<Long> userIds);
+    ReturnMessage<Map> batchQueryByUserId(@RequestParam List<Long> userIds);
 }

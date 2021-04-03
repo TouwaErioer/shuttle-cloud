@@ -14,15 +14,15 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     public ReturnMessage<Object> handle(Exception exception) {
         // 业务异常 code:0
-//        if (exception instanceof BusinessException) {
-//            log.error(exception.getMessage());
-//            return ReturnMessageUtil.error(0, exception.getMessage());
-//        }
-//        // 唯一性约束
-//        if (exception instanceof DuplicateKeyException) {
-//            log.error(exception.getMessage());
-//            return ReturnMessageUtil.error(0, "用户已经存在");
-//        }
+        if (exception instanceof BusinessException) {
+            log.error(exception.getMessage());
+            return ReturnMessageUtil.error(0, exception.getMessage());
+        }
+        // 唯一性约束
+        if (exception instanceof DuplicateKeyException) {
+            log.error(exception.getMessage());
+            return ReturnMessageUtil.error(0, "用户已经存在");
+        }
 
         exception.printStackTrace();
 

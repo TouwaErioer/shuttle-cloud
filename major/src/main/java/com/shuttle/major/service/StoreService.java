@@ -22,7 +22,7 @@ public interface StoreService {
 
     SearchHits search(String keyword, Map<String, String> option);
 
-    List<Store> batchQueryStore(List<Long> StoreIds);
+    Map<Long, Store> batchQueryStore(List<Long> StoreIds);
 
     PageInfo<Store> findAll(Map<String, String> option);
 

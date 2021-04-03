@@ -1,7 +1,6 @@
 package com.shuttle.orders.service.implement;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -173,24 +172,26 @@ public class OrderServiceIpm implements OrderService {
 
     /**
      * 集合对象 -> json -> 对象集合
+     * 解决 java.util.LinkedHashMap cannot be cast to xxx
      *
      * @param object 对象
      * @return object 对象
      */
-    private List conversion(Object object, Class clazz) {
+    private Map conversion(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String json = objectMapper.writeValueAsString(object);
-            JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, clazz);
-            return objectMapper.readValue(json, javaType);
+            // JavaType javaType = objectMapper.getTypeFactory().constructParametricType(Map.class, clazz);
+            Map<String, Object> map = objectMapper.readValue(json, Map.class);
+            return map;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return null;
+        throw new BusinessException(-1, "系统错误");
     }
 
     /**
-     * 补充orders的user,product属性
+     * 补充 orders 的 user,product,store 属性
      *
      * @param orders 订单类
      * @return orders 订单类
@@ -199,50 +200,37 @@ public class OrderServiceIpm implements OrderService {
         List<Long> clientUserIds = new ArrayList<>();
         List<Long> serverUserIds = new ArrayList<>();
         List<Long> productIds = new ArrayList<>();
-        List<Long> storeIds = new ArrayList<>();
+
         for (Orders order : orders) {
             clientUserIds.add(order.getCid());
             serverUserIds.add(order.getSid());
             productIds.add(order.getPid());
-            storeIds.add(order.getStoreId());
         }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
         // 批量查询
-        List<User> clients = conversion(BusinessException.checkReturnMessage(userFeign.batchQueryByUserId(clientUserIds)), User.class);
-        List<User> servers = conversion(BusinessException.checkReturnMessage(userFeign.batchQueryByUserId(serverUserIds)), User.class);
-        List<Product> products = conversion(BusinessException.checkReturnMessage(productFeign.batchQueryByProductId(productIds)), Product.class);
-        List<Store> stores = conversion(BusinessException.checkReturnMessage(storeFeign.batchQueryByStoreId(storeIds)), Store.class);
+        Map<String, User> clients = (Map<String, User>) BusinessException.checkReturnMessage(userFeign.batchQueryByUserId(clientUserIds));
+        Map<String, User> servers = (Map<String, User>) BusinessException.checkReturnMessage(userFeign.batchQueryByUserId(serverUserIds));
+        Map<String, Product> products = (Map<String, Product>) BusinessException.checkReturnMessage(productFeign.batchQueryByProductId(productIds));
+
+        // 获取storeIds
+        List<Long> storeIds = new ArrayList<>();
+        for (Object product : products.values()) {
+            storeIds.add(objectMapper.convertValue(product,Product.class).getStoreId());
+        }
+
+        Map<String, Store> stores = (Map<String, Store>) BusinessException.checkReturnMessage(storeFeign.batchQueryByStoreId(storeIds));
 
         // 填充属性
         for (Orders order : orders) {
-            if (clients != null) {
-                for (User user : clients) {
-                    if (order.getCid() == user.getId()) {
-                        order.setClient(user);
-                    }
-                }
-            }
-            if (servers != null) {
-                for (User user : servers) {
-                    if (order.getSid() == user.getId()) {
-                        order.setService(user);
-                    }
-                }
-            }
-            if (products != null) {
-                for (Product product : products) {
-                    if (order.getPid() == product.getId()) {
-                        order.setProduct(product);
-                    }
-                }
-            }
-            if (stores != null) {
-                for (Store store : stores) {
-                    if (order.getStoreId() == store.getId()) {
-                        order.setStoreName(store.getName());
-                        order.setServiceId(store.getServiceId());
-                    }
-                }
-            }
+            order.setClient(objectMapper.convertValue(clients.get(String.valueOf(order.getCid())), User.class));
+            order.setService(objectMapper.convertValue(servers.get(String.valueOf(order.getSid())), User.class));
+            Product product = objectMapper.convertValue(products.get(String.valueOf(order.getPid())), Product.class);
+            order.setProduct(product);
+            Store store = objectMapper.convertValue(stores.get(String.valueOf(product.getStoreId())), Store.class);
+            order.setStoreName(store.getName());
+            order.setServiceId(store.getServiceId());
         }
 
         return orders;

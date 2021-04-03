@@ -48,8 +48,8 @@ public class StoreController {
 
     @LoginUser
     @RequestMapping(value = "/batchQueryStoreId", method = RequestMethod.POST)
-    public ReturnMessage<Object> batchQueryStoreId(@RequestParam List<Long> storeIds) {
-        return ReturnMessageUtil.sucess(storeService.batchQueryStore(storeIds));
+    public ReturnMessage<Map> batchQueryStoreId(@RequestParam List<Long> storeIds) {
+        return new ReturnMessage<Map>(1, "success", storeService.batchQueryStore(storeIds));
     }
 
     @Admin

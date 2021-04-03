@@ -8,6 +8,7 @@ import com.shuttle.major.config.exception.BusinessException;
 import com.shuttle.major.config.redis.RedisService;
 import com.shuttle.major.entity.Orders;
 import com.shuttle.major.entity.Product;
+import com.shuttle.major.entity.User;
 import com.shuttle.major.fetch.OrderFetch;
 import com.shuttle.major.mapper.ProductMapper;
 import com.shuttle.major.repository.elasticsearch.EsPageHelper;
@@ -171,10 +172,15 @@ public class ProductServiceIpm implements ProductService {
      */
     @Override
     @Cacheable(value = "product", key = "methodName + #productIds.toString()")
-    public List<Product> batchQueryProduct(List<Long> productIds) {
+    public Map<Long, Product> batchQueryProduct(List<Long> productIds) {
         Map<String, Object> productIdsParam = new HashMap<>();
         productIdsParam.put("productIds", productIds);
-        return productMapper.batchQueryProduct(productIdsParam);
+        List<Product> productList = productMapper.batchQueryProduct(productIdsParam);
+        Map<Long, Product> productMap = new HashMap<>();
+        for (Product product : productList) {
+            productMap.put(product.getId(), product);
+        }
+        return productMap;
     }
 
     /**

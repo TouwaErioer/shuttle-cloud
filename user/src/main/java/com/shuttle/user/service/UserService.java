@@ -30,7 +30,7 @@ public interface UserService {
 
     List<User> findById(long id);
 
-    List<User> batchQueryByUserId(List<Long> userIds);
+    Map<Long, User> batchQueryByUserId(List<Long> userIds);
 
     PageInfo<User> findAll(Map<String, String> option);
 

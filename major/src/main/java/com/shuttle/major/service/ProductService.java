@@ -23,7 +23,7 @@ public interface ProductService {
 
     SearchHits<Product> search(String keyword, Map<String, String> option);
 
-    List<Product> batchQueryProduct(List<Long> productIds);
+    Map<Long, Product> batchQueryProduct(List<Long> productIds);
 
     PageInfo<Product> findAll(Map<String, String> option);
 

@@ -75,8 +75,8 @@ public class UserController {
 
     @LoginUser
     @RequestMapping(value = "/batchQueryByUserId", method = RequestMethod.POST)
-    public ReturnMessage<Object> batchQueryByUserId(@RequestParam List<Long> userIds){
-        return ReturnMessageUtil.success(userService.batchQueryByUserId(userIds));
+    public ReturnMessage<Map> batchQueryByUserId(@RequestParam List<Long> userIds) {
+        return new ReturnMessage<Map>(1, "success", userService.batchQueryByUserId(userIds));
     }
 
     @Admin
@@ -113,8 +113,8 @@ public class UserController {
 
     @LoginUser
     @RequestMapping(value = "/reduceScore/{userId}", method = RequestMethod.GET)
-    public ReturnMessage<Object> reduceScore(@PathVariable long userId,HttpServletRequest request) {
-        userService.reduceScore(userId,request.getHeader("authorization"));
+    public ReturnMessage<Object> reduceScore(@PathVariable long userId, HttpServletRequest request) {
+        userService.reduceScore(userId, request.getHeader("authorization"));
         return ReturnMessageUtil.success();
     }
 

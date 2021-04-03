@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.shuttle.major.common.logger.LoggerHelper;
 import com.shuttle.major.config.exception.BusinessException;
 import com.shuttle.major.config.redis.RedisService;
-import com.shuttle.major.entity.Product;
 import com.shuttle.major.entity.Store;
 import com.shuttle.major.mapper.StoreMapper;
 import com.shuttle.major.repository.elasticsearch.EsPageHelper;
@@ -153,10 +152,15 @@ public class StoreServiceImp implements StoreService {
      */
     @Override
     @Cacheable(value = "store", key = "methodName + #storeIds.toString()")
-    public List<Store> batchQueryStore(List<Long> storeIds) {
+    public Map<Long, Store> batchQueryStore(List<Long> storeIds) {
         Map<String, Object> storeIdsParam = new HashMap<>();
         storeIdsParam.put("storeIds", storeIds);
-        return storeMapper.batchQueryStore(storeIdsParam);
+        List<Store> storeList = storeMapper.batchQueryStore(storeIdsParam);
+        Map<Long, Store> storeMap = new HashMap<>();
+        for (Store store : storeList) {
+            storeMap.put(store.getId(), store);
+        }
+        return storeMap;
     }
 
     /**

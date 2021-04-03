@@ -43,8 +43,8 @@ public class ProductController {
 
     @LoginUser
     @RequestMapping(value = "/batchQueryProductId", method = RequestMethod.POST)
-    public ReturnMessage<Object> batchQueryProductId(@RequestParam List<Long> productIds,HttpServletRequest request) {
-        return ReturnMessageUtil.sucess(productService.batchQueryProduct(productIds));
+    public ReturnMessage<Map> batchQueryProductId(@RequestParam List<Long> productIds) {
+        return new ReturnMessage<Map>(1, "success", productService.batchQueryProduct(productIds));
     }
 
     @Admin

@@ -198,10 +198,15 @@ public class UserServiceIpm implements UserService {
      */
     @Override
     @Cacheable(value = "user", key = "methodName + #userIds.toString()")
-    public List<User> batchQueryByUserId(List<Long> userIds) {
+    public Map<Long, User> batchQueryByUserId(List<Long> userIds) {
         Map<String, Object> map = new HashMap<>();
         map.put("userIds", userIds);
-        return userMapper.batchQuery(map);
+        List<User> users = userMapper.batchQuery(map);
+        Map<Long, User> result = new HashMap<>();
+        for (User user : users) {
+            result.put(user.getId(), user);
+        }
+        return result;
     }
 
     /**
