@@ -1,24 +1,23 @@
-server:
-  port: ${port}
 spring:
   application:
-    name: config
-  rabbitmq:
-    host: 107.175.62.153
-    port: 5672
-    username: guest
-    password: guest
-  cloud:
-    config:
-      server:
-        git:
-          uri: ${gitUri}
-          username: ${gitUserName}
-          password: ${gitPassword}
+    name: admin
   security:
     user:
-      name: ${securityName}
-      password: ${securityPassword}
+      name: ${adminUser}
+      password: ${adminPassword}
+  boot:
+    admin:
+      discovery:
+        ignored-services: admin
+  cloud:
+    config:
+      label: ${configLabel}
+      uri: ${configUrl}
+      name: ${configName}
+      username: ${configSecurityName}
+      password: ${configSecurityPassword}
+server:
+  port: ${port}
 eureka:
   client:
     register-with-eureka: true

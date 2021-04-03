@@ -107,3 +107,11 @@ feign:
     max-connections-per-route: 50
     okhttp:
       enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

@@ -56,3 +56,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://shuttle:shuttle@localhost:8001/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
