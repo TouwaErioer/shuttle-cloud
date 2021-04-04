@@ -20,6 +20,9 @@ spring:
       name: ${securityName}
       password: ${securityPassword}
 eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${host}
   client:
     register-with-eureka: true
     fetch-registry: true
