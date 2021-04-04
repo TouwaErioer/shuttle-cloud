@@ -1,0 +1,41 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: shuttle-rabbitmq
+    hostname: rabbitmq
+    volumes:
+      - ./data:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${mqUser}
+      RABBITMQ_DEFAULT_PASS: ${mqPassword}
+    ports:
+      - 5672:5672
+      - 15672:15672
+      -
+  app:
+    restart: always
+    build: ./
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ~/.m2:/root/.m2
+    ports:
+      - ${port}:${port}
+    environment:
+      mqHost: rabbitmq
+      mqUser: ${mqUser}
+      mqPasswd: ${mqPassword}
+      gitUri: ${gitUri}
+      gitUserName: ${gitUserName}
+      gitPassword: ${gitPassword}
+      securityName: ${securityName}
+      securityPassword: ${securityPassword}
+      eurekaUser: ${eurekaUser}
+      eurekaPassword: ${eurekaPassword}
+      eurekaUrl: ${eurekaUrl}
+      eurekaPort: ${eurekaPort}
+      port: ${port}
+    command: mvn clean spring-boot:run
+    depends_on:
+      - rabbitmq
