@@ -49,18 +49,18 @@ spring:
         login-password: ${druidPasswd}
   cache:
     type: redis
-    redis:
-      host: ${redisHost}
-      port: 6379
-      password: ${redisPassword}
-      timeout: 1000
-      database: 0
-      lettuce:
-        pool:
-          max-active: 100
-          max-wait: -1
-          max-idle: 8
-          min-idle: 0
+  redis:
+    host: ${redisHost}
+    port: 6379
+    password: ${redisPassword}
+    timeout: 1000
+    database: 0
+    lettuce:
+      pool:
+        max-active: 100
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
   elasticsearch:
     rest:
       uris: ${elasticsearchUrl}
