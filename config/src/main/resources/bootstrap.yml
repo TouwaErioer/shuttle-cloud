@@ -15,6 +15,7 @@ spring:
           uri: ${gitUri}
           username: ${gitUserName}
           password: ${gitPassword}
+          default-label: main
   security:
     user:
       name: ${securityName}

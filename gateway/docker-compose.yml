@@ -17,7 +17,7 @@ services:
       - ${port}:${port}
     environment:
       redisHost: redis
-      redusPassword: ${redisPassword}
+      redisPassword: ${redisPassword}
       eurekaUser: ${eurekaUser}
       eurekaPassword: ${eurekaPassword}
       eurekaUrl: ${eurekaUrl}
@@ -26,4 +26,4 @@ services:
       host: ${host}
     command: mvn clean spring-boot:run
     depends_on:
-      - rabbitmq
+      - redis
