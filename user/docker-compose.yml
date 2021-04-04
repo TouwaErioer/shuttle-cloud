@@ -1,0 +1,48 @@
+version: '3'
+services:
+  mysql:
+    container_name: shuttle-mysql
+    image: mysql:1
+    build: ./init
+    volumes:
+      - ./init/mysql:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: ${dbPassword}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+    restart: always
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  redis:
+    container_name: shuttle-redis
+    image: redis
+    command: redis-server --requirepass ${redisPassword}
+    ports:
+      - 6379:6379
+  app:
+    restart: always
+    build: ./
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ~/.m2:/root/.m2
+    ports:
+      - ${port}:${port}
+    environment:
+      dbHost: mysql
+      dbName: shuttle
+      dbUser: root
+      dbPasswd: ${dbPassword}
+      redisPassword: ${redisPassword}
+      redisHost: redis
+      configLabel: ${configLabel}
+      configUrl: ${configUrl}
+      configName: ${configName}
+      configSecurityName: ${configSecurityName}
+      configSecurityPassword: ${configSecurityPassword}
+      port: ${port}
+      host: ${host}
+    command: mvn clean spring-boot:run
+    depends_on:
+      - mysql
+      - redis
