@@ -7,8 +7,8 @@ services:
     volumes:
       - ./data:/var/lib/rabbitmq
     environment:
-      RABBITMQ_DEFAULT_USER: ${mqUser}
-      RABBITMQ_DEFAULT_PASS: ${mqPassword}
+      RABBITMQ_DEFAULT_USER: ${rabbitUser}
+      RABBITMQ_DEFAULT_PASS: ${rabbitPassword}
     ports:
       - 5672:5672
       - 15672:15672
