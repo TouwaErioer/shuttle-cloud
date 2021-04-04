@@ -8,7 +8,7 @@ spring:
   boot:
     admin:
       discovery:
-        ignored-services: admin
+        ignored-services: admin,config
     client:
       prefer:
         ip: true
