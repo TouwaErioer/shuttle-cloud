@@ -23,9 +23,9 @@ services:
     ports:
       - ${port}:${port}
     environment:
-      mqHost: rabbitmq
-      mqUser: ${mqUser}
-      mqPasswd: ${mqPassword}
+      rabbitHost: rabbitmq
+      rabbitUser: ${rabbitUser}
+      rabbitPassword: ${rabbitPassword}
       gitUri: ${gitUri}
       gitUserName: ${gitUserName}
       gitPassword: ${gitPassword}

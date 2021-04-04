@@ -5,7 +5,7 @@ spring:
     name: config
   rabbitmq:
     host: ${rabbitHost}
-    port: ${rabbitPort}
+    port: 5672
     username: ${rabbitUser}
     password: ${rabbitPassword}
   cloud:
