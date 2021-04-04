@@ -9,6 +9,9 @@ spring:
     admin:
       discovery:
         ignored-services: admin
+    client:
+      prefer:
+        ip: true
   cloud:
     config:
       label: ${configLabel}
