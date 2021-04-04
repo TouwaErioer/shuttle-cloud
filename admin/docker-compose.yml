@@ -8,6 +8,7 @@ services:
       - ./:/app
       - ~/.m2:/root/.m2
     ports:
+      - ${port}:${port}
     environment:
       configLabel: ${configLabel}
       configUrl: ${configUrl}
