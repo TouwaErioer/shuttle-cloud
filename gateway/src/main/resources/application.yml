@@ -1,11 +1,12 @@
 server:
-  port: 8089
+  port: ${port}
 spring:
   application:
     name: gateway
   redis:
-    host: localhost
+    host: ${redisHost}
     port: 6379
+    password: ${redisPassword}
   cloud:
     gateway:
       routes:
@@ -53,9 +54,14 @@ spring:
                 fallbackUri: forward:/fallback
 
 eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${host}
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone: http://shuttle:shuttle@localhost:8001/eureka/
+      defaultZone: http://${eurekaUser}:${eurekaPassword}@${eurekaUrl}:${eurekaPort}/eureka/
 management:
   endpoints:
     web:
