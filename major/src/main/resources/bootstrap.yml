@@ -13,9 +13,9 @@ spring:
       password: ${configSecurityPassword}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${dbPasswd1}
-    url: jdbc:mysql://${dbHost1}:3306/${dbName1}?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: ${dbUser1}
+    password: ${dbPasswd}
+    url: jdbc:mysql://${dbHost}:3306/shuttle?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: ${dbUser}
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -70,6 +70,9 @@ pagehelper:
 server:
   port: ${port}
 eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${host}
   client:
     register-with-eureka: true
     fetch-registry: true
