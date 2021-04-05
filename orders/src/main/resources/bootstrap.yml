@@ -94,10 +94,10 @@ server:
 jwt:
   key: ${key}
 eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${host}
   client:
-    instance:
-      prefer-ip-address: true
-      ip-address: ${host}
     register-with-eureka: true
     fetch-registry: true
     service-url:
