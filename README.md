@@ -1,6 +1,6 @@
 # 项目介绍
 
-`shuttle-cloud` 是项目 [shuttle](https://github.com/TouwaErioer/shuttle) 分布式实现，采用了 `Spring Cloud Eureka`、`Spring Cloud Config`、`Spring Boot Admin`、`Spring Cloud Gateway`、`Spring Cloud OpenFeign`、`Docker`等核心技术，同时提供了基于Vue的管理后台方便快速搭建系统。项目基础集成了注册中心、配置中心、监控中心、网关等系统功能。
+**shuttle-cloud** 是项目 [shuttle](https://github.com/TouwaErioer/shuttle) 基于 **Spring Cloud** 的分布式实现，采用了 **Spring Cloud Eureka**、**Spring Cloud Config**、**Spring Boot Admin**、**Spring Cloud Gateway**、**Spring Cloud OpenFeign**、**Docker**等核心技术，同时提供了基于Vue的前端项目 [shuttle-web](https://github.com/TouwaErioer/shuttle-web) 和后台管理系统 [shuttle-admin](https://github.com/TouwaErioer/shuttle-admin)
 
 # 系统架构图
 

@@ -2,7 +2,7 @@
 
 订单相关服务
 
-## 依赖
+# 依赖
 
 | Description | Version|
 |  :----: | :----: |
@@ -16,7 +16,7 @@
 | JWT | 3.4.0 |
 | PageHelper | 1.2.5 |
 
-## 必要参数
+# 必要参数
 
 请在项目根目录 `.env` 文件里完成参数填写
 
@@ -34,12 +34,12 @@ mqUser= # rabitmq用户
 mqPassword= # rabitmq密码
 ```
 
-## 环境依赖
+# 环境依赖
 
 * Docker
 * Docler-compose
 
-## 部署
+# 部署
 
 ```sh
 # 克隆项目

@@ -2,7 +2,7 @@
 
 服务监控中心
 
-## 依赖
+# 依赖
 
 | Description | Version|
 |  :----: | :----: |
@@ -16,7 +16,7 @@
 | spring-boot-starter-actuator | latest |
 | spring-boot-starter-jetty | latest |
 
-## 必要参数
+# 必要参数
 
 请在项目根目录 `.env` 文件里完成参数填写
 
@@ -29,12 +29,12 @@ configSecurityName= # 配置账户
 configSecurityPassword= # 配置密码
 ```
 
-## 环境依赖
+# 环境依赖
 
 * Docker
 * Docler-compose
 
-## 部署
+# 部署
 
 ```sh
 # 克隆项目

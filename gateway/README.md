@@ -2,7 +2,7 @@
 
 网关服务中心
 
-## 依赖
+# 依赖
 
 | Description | Version|
 |  :----: | :----: |
@@ -14,7 +14,7 @@
 | spring-boot-starter-actuator | latest |
 | spring-boot-starter-data-redis-reactive | latest |
 
-## 必要参数
+# 必要参数
 
 请在项目根目录 `.env` 文件里完成参数填写
 
@@ -28,12 +28,12 @@ host= # 部署服务器公网ip
 redisPassword= # redis密码
 ```
 
-## 环境依赖
+# 环境依赖
 
 * Docker
 * Docler-compose
 
-## 部署
+# 部署
 
 ```sh
 # 克隆项目

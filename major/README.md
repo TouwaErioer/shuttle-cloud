@@ -2,7 +2,7 @@
 
 服务、类别、商店、产品、评论、广告相关服务
 
-## 依赖
+# 依赖
 
 | Description | Version|
 |  :----: | :----: |
@@ -18,7 +18,7 @@
 | ElasticSearch | 7.6.2 |
 | MongoDB | latest |
 
-## 必要参数
+# 必要参数
 
 请在项目根目录 `.env` 文件里完成参数填写
 
@@ -36,12 +36,12 @@ mongoUser= # mongodb用户
 mongoPassword= # mongodb密码
 ```
 
-## 环境依赖
+# 环境依赖
 
 * Docker
 * Docler-compose
 
-## 部署
+# 部署
 
 ```sh
 # 克隆项目
