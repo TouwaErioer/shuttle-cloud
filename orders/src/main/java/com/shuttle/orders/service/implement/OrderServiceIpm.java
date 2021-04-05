@@ -197,6 +197,9 @@ public class OrderServiceIpm implements OrderService {
      * @return orders 订单类
      */
     private List<Orders> merge(List<Orders> orders) {
+        if(orders.size() == 0){
+            return orders;
+        }
         List<Long> clientUserIds = new ArrayList<>();
         List<Long> serverUserIds = new ArrayList<>();
         List<Long> productIds = new ArrayList<>();
