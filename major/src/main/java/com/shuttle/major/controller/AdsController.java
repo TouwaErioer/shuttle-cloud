@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @created: 2020/10/30 13:49
  */
 @RestController
-@RequestMapping("/major/poster")
+@RequestMapping("/poster")
 public class AdsController {
 
     @Resource

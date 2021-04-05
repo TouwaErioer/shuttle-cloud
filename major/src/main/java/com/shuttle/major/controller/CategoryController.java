@@ -21,7 +21,7 @@ import java.util.Map;
  * @created: 2020/10/30 13:49
  */
 @RestController
-@RequestMapping("/major/category")
+@RequestMapping("/category")
 public class CategoryController {
 
     @Resource

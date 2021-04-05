@@ -41,7 +41,7 @@ spring:
         - id: major_route
           uri: lb://major
           predicates:
-            - Path=/major/**
+            - Path=/service/**,/category/**,/product/**,/store/**,/commonts/**,/ads/**
           filters:
             - name: RequestRateLimiter
               args:

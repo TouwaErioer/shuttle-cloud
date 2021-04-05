@@ -19,7 +19,7 @@ import java.util.Map;
  * @created: 2021/02/17 13:57
  */
 @RestController
-@RequestMapping("/major/comments")
+@RequestMapping("/comments")
 public class CommentsController {
 
     @Resource
