@@ -20,7 +20,7 @@ import java.util.Map;
  * @created: 2021/03/29 15:25
  */
 @RestController
-@RequestMapping("service")
+@RequestMapping("/major/service")
 public class ServiceController {
     
     @Resource

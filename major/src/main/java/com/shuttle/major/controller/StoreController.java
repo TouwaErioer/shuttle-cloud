@@ -19,7 +19,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/store")
+@RequestMapping("/major/store")
 public class StoreController {
 
     @Resource
