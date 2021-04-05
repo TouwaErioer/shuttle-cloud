@@ -47,7 +47,7 @@ public class ServiceController {
         return ReturnMessageUtil.sucess();
     }
 
-    @Admin
+    @LoginUser
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public ReturnMessage<Object> findAll(Map<String, String> option) {
         return ReturnMessageUtil.sucess(serviceService.findAll(option));
