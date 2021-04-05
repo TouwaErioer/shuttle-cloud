@@ -15,4 +15,4 @@ create table user(
 	unique(name)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` VALUES (1,'084e0343a0486ff05530df6c705c8bb4','18800000000','Earth',0,0,'guest');
+INSERT INTO `user` VALUES (1,'084e0343a0486ff05530df6c705c8bb4','18800000000','Earth',0,1,'guest');
