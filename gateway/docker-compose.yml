@@ -17,5 +17,3 @@ services:
       port: ${port}
       host: ${host}
     command: mvn clean spring-boot:run
-    depends_on:
-      - redis
