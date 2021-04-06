@@ -1,11 +1,5 @@
 version: '3'
 services:
-  redis:
-    container_name: shuttle-redis
-    image: redis
-    command: redis-server --requirepass ${redisPassword}
-    ports:
-      - 6379:6379
   app:
     restart: always
     build: ./
@@ -16,8 +10,6 @@ services:
     ports:
       - ${port}:${port}
     environment:
-      redisHost: redis
-      redisPassword: ${redisPassword}
       eurekaUser: ${eurekaUser}
       eurekaPassword: ${eurekaPassword}
       eurekaUrl: ${eurekaUrl}

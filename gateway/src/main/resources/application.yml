@@ -3,10 +3,6 @@ server:
 spring:
   application:
     name: gateway
-  redis:
-    host: ${redisHost}
-    port: 6379
-    password: ${redisPassword}
   cloud:
     gateway:
       routes:
@@ -15,11 +11,6 @@ spring:
           predicates:
             - Path=/user/**
           filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 2
-                key-resolver: "#{@ipKeyResolver}"
             - name: Hystrix
               args:
                 name: fallbackcmd
@@ -29,11 +20,6 @@ spring:
           predicates:
             - Path=/orders/**
           filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 2
-                key-resolver: "#{@ipKeyResolver}"
             - name: Hystrix
               args:
                 name: fallbackcmd
@@ -43,11 +29,6 @@ spring:
           predicates:
             - Path=/major/**
           filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 2
-                key-resolver: "#{@ipKeyResolver}"
             - name: Hystrix
               args:
                 name: fallbackcmd
