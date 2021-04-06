@@ -14,6 +14,7 @@ shuttle-cloud
 ├── config -- 全局配置中心
 ├── eureka -- 微服务注册中心
 ├── gateway -- 项目服务网关
+├── KLE -- 线上日志系统
 ├── major -- 服务、类别、商店、产品、评论、广告相关模块
 ├── orders -- 订单相关模块
 └── user -- 用户相关模块
@@ -24,12 +25,12 @@ shuttle-cloud
 # 部署顺序
 
 > 请阅读相关项目下的 README.md
-
-1. [eureka](https://github.com/TouwaErioer/shuttle-cloud/tree/master/eureka)
-2. [config](https://github.com/TouwaErioer/shuttle-cloud/tree/master/config)
-3. [admin](https://github.com/TouwaErioer/shuttle-cloud/tree/master/admin)
-4. [gateway](https://github.com/TouwaErioer/shuttle-cloud/tree/master/gateway)
-5. [user](https://github.com/TouwaErioer/shuttle-cloud/tree/master/user)
-6. [major](https://github.com/TouwaErioer/shuttle-cloud/tree/master/major)
-7. [orders](https://github.com/TouwaErioer/shuttle-cloud/tree/master/orders)
+1. [KLE](https://github.com/TouwaErioer/shuttle-cloud/tree/master/KLE)
+2. [eureka](https://github.com/TouwaErioer/shuttle-cloud/tree/master/eureka)
+3. [config](https://github.com/TouwaErioer/shuttle-cloud/tree/master/config)
+4. [admin](https://github.com/TouwaErioer/shuttle-cloud/tree/master/admin)
+5. [gateway](https://github.com/TouwaErioer/shuttle-cloud/tree/master/gateway)
+6. [user](https://github.com/TouwaErioer/shuttle-cloud/tree/master/user)
+7. [major](https://github.com/TouwaErioer/shuttle-cloud/tree/master/major)
+8. [orders](https://github.com/TouwaErioer/shuttle-cloud/tree/master/orders)
 

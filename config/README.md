@@ -71,7 +71,7 @@ druidUser=shuttle # druid用户
 druidPasswd=shuttle # druid密码
 ```
 
-## 必要参数
+# 必要参数
 
 请在项目根目录 `.env` 文件里完成参数填写
 
@@ -91,12 +91,12 @@ rabbitPassword= # rabitmq密码
 host= # 部署服务器公网ip
 ```
 
-## 环境依赖
+# 环境依赖
 
 * Docker
 * Docler-compose
 
-## 部署
+# 部署
 
 ```sh
 # 克隆项目

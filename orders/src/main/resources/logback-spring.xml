@@ -7,6 +7,8 @@
     <property name="APP_NAME" value="shuttle"/>
     <!--日志文件保存路径-->
     <property name="LOG_FILE_PATH" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/logs}"/>
+    <!--可以访问的logstash日志收集端口-->
+    <property name="logstashHost" value="${logstashHost}"/>
     <contextName>${APP_NAME}</contextName>
     <!--每天记录日志到文件appender-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -20,8 +22,7 @@
     </appender>
     <!--输出到logstash的appender-->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <!--可以访问的logstash日志收集端口-->
-        <destination>23.94.138.93:4560</destination>
+        <destination>${logstashHost}</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
     <root level="INFO">

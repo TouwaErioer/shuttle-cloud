@@ -11,7 +11,7 @@
 | spring-cloud-starter-netflix-eureka-server | latest |
 | spring-boot-starter-security | latest |
 
-## 必要参数
+# 必要参数
 
 请在项目根目录 `.env` 文件里完成参数填写
 
@@ -21,12 +21,12 @@ user= # eureka用户
 password= # eureka密码
 ```
 
-## 环境依赖
+# 环境依赖
 
 * Docker
 * Docler-compose
 
-## 部署
+# 部署
 
 ```sh
 # 克隆项目
