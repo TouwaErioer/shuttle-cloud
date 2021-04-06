@@ -44,6 +44,7 @@ eurekaPort= # eureka端口
 druidUser=shuttle # druid用户
 druidPasswd=shuttle # druid密码
 mqHost= # rabbitmq地址
+logstashHost= # logstash地址(ip:port)
 ```
 
 创建 `major.properties`
@@ -57,6 +58,7 @@ eurekaPort= # eureka端口
 druidUser=shuttle # druid用户
 druidPasswd=shuttle # druid密码
 elasticsearchUrl= # elasticsearch地址
+logstashHost= # logstash地址(ip:port)
 ```
 
 创建 `order.properties`
@@ -69,6 +71,7 @@ eurekaUrl= # eureka地址
 eurekaPort= # eureka端口
 druidUser=shuttle # druid用户
 druidPasswd=shuttle # druid密码
+logstashHost= # logstash地址(ip:port)
 ```
 
 # 必要参数
