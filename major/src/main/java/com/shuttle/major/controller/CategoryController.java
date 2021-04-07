@@ -7,10 +7,7 @@ import com.shuttle.major.entity.ReturnMessage;
 import com.shuttle.major.service.CategoryService;
 import com.shuttle.major.utils.ReturnMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -50,7 +47,7 @@ public class CategoryController {
 
     @Admin
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    public ReturnMessage<Object> findAll(Map<String, String> option) {
+    public ReturnMessage<Object> findAll(@RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(categoryService.findAll(option));
     }
 
