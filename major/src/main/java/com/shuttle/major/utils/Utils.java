@@ -35,7 +35,7 @@ public class Utils {
             }
 
             if (!option.containsKey("order")) {
-                option.put("order", "DESC");
+                option.put("order", "ASC");
             } else {
                 String order = option.get("order");
                 if (!order.equals("ASC") && !order.equals("DESC")) {
