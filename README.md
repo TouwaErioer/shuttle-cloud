@@ -24,7 +24,7 @@
 
 [shuttle-admin](https://shuttle-admin.vercel.app)
 
-> 测试账号：用户 `geust` 密码 `geust`
+测试账号：用户 `geust` 密码 `geust`
 
 # 系统架构图
 
