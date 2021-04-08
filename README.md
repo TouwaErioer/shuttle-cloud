@@ -1,6 +1,30 @@
 # 项目介绍
 
-**shuttle-cloud** 是项目 [shuttle](https://github.com/TouwaErioer/shuttle) 基于 **Spring Cloud** 的分布式实现，采用了 **Spring Cloud Eureka**、**Spring Cloud Config**、**Spring Boot Admin**、**Spring Cloud Gateway**、**Spring Cloud OpenFeign**、**Docker**等核心技术，同时提供了基于Vue的前端项目 [shuttle-web](https://github.com/TouwaErioer/shuttle-web) 和后台管理系统 [shuttle-admin](https://github.com/TouwaErioer/shuttle-admin)
+**shuttle-cloud** 是项目 [shuttle](https://github.com/TouwaErioer/shuttle) 基于 **Spring Cloud** 的分布式实现
+
+基于Vue的前端项目 [shuttle-web](https://github.com/TouwaErioer/shuttle-web) 和后台管理系统 [shuttle-admin](https://github.com/TouwaErioer/shuttle-admin)
+
+# 技术选型
+
+服务发现中心：**Spring Cloud Eureka**
+
+全局配置中心：**Spring Cloud Config**
+
+服务监控中心：**Spring Boot Admin**
+
+服务网关中心：**Spring Cloud Gateway**
+
+服务调用：**Spring Cloud OpenFeign**
+
+部署工具：**Docker-Compose**
+
+# 在线预览
+
+> 测试账号：用户 `geust` 密码 `geust`
+
+[shuttle-web](https://shuttle-web.vercel.app/) 
+
+[shuttle-admin](https://shuttle-admin.vercel.app)
 
 # 系统架构图
 
@@ -21,6 +45,16 @@ shuttle-cloud
 ```
 
 # 效果
+
+Spring Boot Admin
+
+![Spring-Boot-Admin](https://ae01.alicdn.com/kf/U664254423e20400bb231c0267ab72a26S.jpg)
+
+![Detail](https://ae01.alicdn.com/kf/Uc8b8d3ec54b94d468977377d6997acc1h.jpg)
+
+KLE
+
+![kLE](https://ae01.alicdn.com/kf/Ucc0eb37f724c4909b87d0568530401e7F.jpg)
 
 # 部署顺序
 

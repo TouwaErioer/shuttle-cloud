@@ -9,13 +9,13 @@ Elasticsearch + Logstash + Kibana 线上日志系统
 
 ```bash
 # 创建elasticsearch数据文件目录
-mkdir /mydata/elasticsearch/data
+mkdir -p /mydata/elasticsearch/data
 
 # 赋予相应权限
 sudo chmod 777 /mydata/elasticsearch/data
 
 # 创建logstash数据文件目录
-mkdir /mydata/logstash
+mkdir -p /mydata/logstash
 ```
 
 在 `/mydata/logstash` 目录下创建 `logstash-springboot.conf` 
