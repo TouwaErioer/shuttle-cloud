@@ -13,15 +13,15 @@ import java.util.Map;
 @FeignClient(value = "major")
 public interface ProductFeign {
 
-    @GetMapping("/product/exist/{id}")
+    @GetMapping("/major/product/exist/{id}")
     ReturnMessage<Object> exist(@PathVariable long id);
 
-    @PostMapping("/product/addSales")
+    @PostMapping("/major/product/addSales")
     ReturnMessage<Object> addSales(@RequestParam("id") long id, @RequestParam("sales") int sales);
 
-    @GetMapping("/product/findById/{id}")
+    @GetMapping("/major/product/findById/{id}")
     ReturnMessage<Object> findById(@PathVariable long id);
 
-    @PostMapping("/product/batchQueryProductId")
+    @PostMapping("/major/product/batchQueryProductId")
     ReturnMessage<Map> batchQueryByProductId(@RequestParam List<Long> productIds);
 }

@@ -12,9 +12,9 @@ import java.util.List;
 @FeignClient(value = "major")
 public interface StoreFeign {
 
-    @GetMapping("/store/findById/{id}")
+    @GetMapping("/major/store/findById/{id}")
     ReturnMessage<Object> findById(@PathVariable long id);
 
-    @PostMapping("/store/batchQueryStoreId")
+    @PostMapping("/major/store/batchQueryStoreId")
     ReturnMessage<Object> batchQueryByStoreId(@RequestParam List<Long> storeIds);
 }
