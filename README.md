@@ -2,29 +2,29 @@
 
 **shuttle-cloud** 是项目 [shuttle](https://github.com/TouwaErioer/shuttle) 基于 **Spring Cloud** 的分布式实现
 
-基于Vue的前端项目 [shuttle-web](https://github.com/TouwaErioer/shuttle-web) 和后台管理系统 [shuttle-admin](https://github.com/TouwaErioer/shuttle-admin)
+基于 **Vue** & **Element** 的前端项目 [shuttle-web](https://github.com/TouwaErioer/shuttle-web) 和后台管理系统 [shuttle-admin](https://github.com/TouwaErioer/shuttle-admin)
 
 # 技术选型
 
-服务发现中心：**Spring Cloud Eureka**
+* 服务发现中心：**Spring Cloud Eureka**
 
-全局配置中心：**Spring Cloud Config**
+* 全局配置中心：**Spring Cloud Config**
 
-服务监控中心：**Spring Boot Admin**
+* 服务监控中心：**Spring Boot Admin**
 
-服务网关中心：**Spring Cloud Gateway**
+* 服务网关中心：**Spring Cloud Gateway**
 
-服务调用：**Spring Cloud OpenFeign**
+* 服务调用：**Spring Cloud OpenFeign**
 
-部署工具：**Docker-Compose**
+* 部署工具：**Docker-Compose**
 
 # 在线预览
-
-> 测试账号：用户 `geust` 密码 `geust`
 
 [shuttle-web](https://shuttle-web.vercel.app/) 
 
 [shuttle-admin](https://shuttle-admin.vercel.app)
+
+> 测试账号：用户 `geust` 密码 `geust`
 
 # 系统架构图
 
