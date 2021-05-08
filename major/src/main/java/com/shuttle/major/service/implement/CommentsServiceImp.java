@@ -15,6 +15,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -92,6 +93,17 @@ public class CommentsServiceImp implements CommentsService {
         comments.setUserId(JwtUtils.getUserId(token));
         commentsRepository.save(comments);
     }
+
+    /**
+     * 根据userId改昵称
+     * @param userId 用户id
+     * @param newName 昵称
+     */
+    @Override
+    public void updateByUserId(long userId, String newName) {
+        mongoTemplate.updateMulti(new Query(Criteria.where("userId").is(userId)), new Update().set("name", newName), Comments.class);
+    }
+
 
     /**
      * 根据商店id查询评论

@@ -73,6 +73,7 @@ public class CategoryServiceImp implements CategoryService {
      *
      * @param serviceId 服务id
      */
+    @Override
     @Transient
     @CacheEvict(value = "category", allEntries = true)
     public void deleteByServiceId(long serviceId) {

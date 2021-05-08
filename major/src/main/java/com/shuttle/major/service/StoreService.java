@@ -14,9 +14,11 @@ public interface StoreService {
 
     void delete(long id);
 
+    void deleteByCategoryId(long categoryId);
+
     void update(Store store);
 
-    List<Store> rank();
+    List<Store> rank(Map<String, String> option);
 
     void sales(long id, int quantity);
 
@@ -30,9 +32,13 @@ public interface StoreService {
 
     List<Store> findByCategoryId(long categoryId);
 
+    PageInfo<Store> findByCategoryId(long categoryId, Map<String, String> option);
+
     List<Store> findById(long id);
 
-    void review(long id, float rate);
+    void review(long id, float rate, String token);
 
     boolean exist(long id);
+
+    List<Store> findByName(String name);
 }

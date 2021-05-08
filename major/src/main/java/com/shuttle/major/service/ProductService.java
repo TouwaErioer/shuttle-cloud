@@ -17,9 +17,9 @@ public interface ProductService {
 
     void update(Product product);
 
-    void review(Product product, String token);
+    void review(Product product, String token, long orderId);
 
-    List<Product> rank();
+    List<Product> rank(Map<String, String> option);
 
     SearchHits<Product> search(String keyword, Map<String, String> option);
 
@@ -28,6 +28,8 @@ public interface ProductService {
     PageInfo<Product> findAll(Map<String, String> option);
 
     List<Product> findByStoreId(long storeId);
+
+    PageInfo<Product> findByStoreId(long storeId, Map<String, String> option);
 
     Product findById(long id);
 

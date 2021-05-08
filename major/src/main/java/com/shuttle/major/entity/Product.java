@@ -27,4 +27,5 @@ public class Product implements Serializable {
     private float rate;
     private long storeId;
     private Store store;
+    private int quantity;
 }

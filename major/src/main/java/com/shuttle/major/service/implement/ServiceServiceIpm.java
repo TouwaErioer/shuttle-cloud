@@ -6,15 +6,16 @@ import com.shuttle.major.common.logger.LoggerHelper;
 import com.shuttle.major.config.exception.BusinessException;
 import com.shuttle.major.entity.Services;
 import com.shuttle.major.mapper.ServiceMapper;
+import com.shuttle.major.service.CategoryService;
 import com.shuttle.major.service.ServiceService;
 import com.shuttle.major.utils.Utils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.beans.Transient;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +26,16 @@ public class ServiceServiceIpm implements ServiceService {
     @Resource
     private ServiceMapper serviceMapper;
 
+    @Resource
+    private CategoryService categoryService;
+
     /**
      * 添加服务
      *
      * @param services 服务
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "service", allEntries = true)
     public void insert(Services services) {
         int res = serviceMapper.insert(services);
@@ -45,12 +49,13 @@ public class ServiceServiceIpm implements ServiceService {
      * @param id 服务id
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "service", allEntries = true)
     public void delete(Long id) {
         int res = serviceMapper.delete(id);
         log.info(LoggerHelper.logger(id, res));
         BusinessException.check(res, "服务删除失败");
+        categoryService.deleteByServiceId(id);
     }
 
     /**
@@ -59,7 +64,7 @@ public class ServiceServiceIpm implements ServiceService {
      * @param services 服务
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "service", allEntries = true)
     public void update(Services services) {
         int res = serviceMapper.update(services);

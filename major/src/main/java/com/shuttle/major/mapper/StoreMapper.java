@@ -26,7 +26,6 @@ public interface StoreMapper {
 
     @SelectProvider(type = StoreProvider.class, method = "selectByKey")
     @Results(value = {
-            @Result(column = "newRate", property = "rate"),
             @Result(column = "serviceName", property = "services.name"),
             @Result(column = "serviceColor", property = "services.color"),
             @Result(column = "categoryName", property = "category.name")
@@ -38,4 +37,7 @@ public interface StoreMapper {
 
     @Update("update store set rate = (rate * sales + #{rate}) / (sales + 1) where id = #{id}")
     int review(long id, float rate);
+
+    @Select("select * from store where name = #{name}")
+    List<Store> findByName(String name);
 }

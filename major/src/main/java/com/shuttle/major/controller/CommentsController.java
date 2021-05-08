@@ -57,4 +57,10 @@ public class CommentsController {
     public ReturnMessage<Object> findByStoreId(@PathVariable long storeId, @RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(commentsService.findByStoreId(storeId, option));
     }
+
+    @RequestMapping(value = "/updateByUserId", method = RequestMethod.POST)
+    public ReturnMessage<Object> updateByUserId(long userId, String newName) {
+        commentsService.updateByUserId(userId, newName);
+        return ReturnMessageUtil.sucess();
+    }
 }

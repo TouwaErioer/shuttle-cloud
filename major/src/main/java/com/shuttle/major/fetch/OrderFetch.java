@@ -20,4 +20,7 @@ public interface OrderFetch {
     @PostMapping("/order/completed")
     ReturnMessage<Object> completed(@RequestParam("id") long id);
 
+    @GetMapping("/order/findById/{id}")
+    ReturnMessage<Object> findById(@PathVariable long id);
+
 }

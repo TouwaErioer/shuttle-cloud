@@ -1,17 +1,7 @@
 package com.shuttle.major.utils;
 
 import com.shuttle.major.config.exception.BusinessException;
-import org.apache.commons.codec.digest.DigestUtils;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
@@ -71,4 +61,25 @@ public class Utils {
         return option;
     }
 
+    /**
+     * 检查rank quantity
+     *
+     * @return option
+     */
+    public static Map<String, String> checkQuantity(Map<String, String> option) {
+        if (!option.containsKey("quantity") || Integer.parseInt(option.get("quantity")) <= 0)
+            option.put("quantity", "9");
+        return option;
+    }
+
+    /**
+     * 排行榜算法
+     *
+     * @param rate  评分
+     * @param sales 销量
+     */
+    public static double changeRate(double rate, double sales) {
+        if (sales == 0) sales = 1;
+        return sales * rate;
+    }
 }

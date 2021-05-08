@@ -9,6 +9,7 @@ import com.shuttle.major.utils.ReturnMessageUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -67,8 +68,9 @@ public class StoreController {
 
     @LoginUser
     @RequestMapping(value = "/findByCategoryId/{categoryId}", method = RequestMethod.GET)
-    public ReturnMessage<Object> findByCategoryId(@PathVariable("categoryId") long categoryId) {
-        return ReturnMessageUtil.sucess(storeService.findByCategoryId(categoryId));
+    public ReturnMessage<Object> findByCategoryId(@PathVariable("categoryId") long categoryId,
+                                                  @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(storeService.findByCategoryId(categoryId, option));
     }
 
     @LoginUser
@@ -79,8 +81,8 @@ public class StoreController {
 
     @LoginUser
     @RequestMapping(value = "/rank", method = RequestMethod.GET)
-    public ReturnMessage<Object> rank() {
-        return ReturnMessageUtil.sucess(storeService.rank());
+    public ReturnMessage<Object> rank(@RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(storeService.rank(option));
     }
 
     @LoginUser
@@ -93,5 +95,12 @@ public class StoreController {
     @RequestMapping(value = "/exist/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> exist(@PathVariable("id") long id) {
         return ReturnMessageUtil.sucess(storeService.exist(id));
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/review", method = RequestMethod.POST)
+    public ReturnMessage<Object> review(long id, float rate, HttpServletRequest request) {
+        storeService.review(id, rate, request.getHeader("Authorization"));
+        return ReturnMessageUtil.sucess();
     }
 }

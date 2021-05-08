@@ -67,15 +67,15 @@ public class ProductController {
 
     @LoginUser
     @RequestMapping(value = "/review", method = RequestMethod.POST)
-    public ReturnMessage<Object> review(Product product, HttpServletRequest request) {
-        productService.review(product, request.getHeader("Authorization"));
+    public ReturnMessage<Object> review(Product product, long orderId, HttpServletRequest request) {
+        productService.review(product, request.getHeader("Authorization"), orderId);
         return ReturnMessageUtil.sucess();
     }
 
     @LoginUser
     @RequestMapping(value = "/rank", method = RequestMethod.GET)
-    public ReturnMessage<Object> rank() {
-        return ReturnMessageUtil.sucess(productService.rank());
+    public ReturnMessage<Object> rank(@RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(productService.rank(option));
     }
 
     @LoginUser
