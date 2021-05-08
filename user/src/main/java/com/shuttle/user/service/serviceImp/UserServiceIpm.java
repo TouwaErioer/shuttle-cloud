@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.beans.Transient;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +57,7 @@ public class UserServiceIpm implements UserService {
      * @param user 用户
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "user", allEntries = true)
     public void register(User user) {
         // 检查输入合法
@@ -95,7 +94,7 @@ public class UserServiceIpm implements UserService {
      * @param id 用户id
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "user", allEntries = true)
     public void delete(long id) {
         int res = userMapper.delete(id);
@@ -111,7 +110,7 @@ public class UserServiceIpm implements UserService {
      * @param user 用户
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "user", allEntries = true)
     public void update(User user) {
         int res = userMapper.update(user);
@@ -126,7 +125,7 @@ public class UserServiceIpm implements UserService {
      * @param id       用户id
      * @param password 密码
      */
-    @Transient
+    @Transactional
     @CacheEvict(value = "user", allEntries = true)
     public void updatePassword(long id, String password, String token) {
         if (JwtUtils.getUserId(token) != id) throw new BusinessException(1, "只能修改当前用户的密码");
@@ -156,7 +155,7 @@ public class UserServiceIpm implements UserService {
      * @param quantity 数量
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "user", allEntries = true)
     public void addScore(long id, int quantity) {
         int res = userMapper.addScore(id, quantity);
@@ -170,7 +169,7 @@ public class UserServiceIpm implements UserService {
      * @param id 用户id
      */
     @Override
-    @Transient
+    @Transactional
     @CacheEvict(value = "user", allEntries = true)
     public void reduceScore(long id, String token) {
         long userId = JwtUtils.getUserId(token);
