@@ -6,7 +6,6 @@ import com.shuttle.major.entity.Category;
 import com.shuttle.major.entity.ReturnMessage;
 import com.shuttle.major.service.CategoryService;
 import com.shuttle.major.utils.ReturnMessageUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,38 +27,38 @@ public class CategoryController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ReturnMessage<Object> insert(Category category) {
         categoryService.insert(category);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ReturnMessage<Object> delete(long id) {
         categoryService.delete(id);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ReturnMessage<Object> update(Category category) {
         categoryService.update(category);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public ReturnMessage<Object> findAll(@RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.sucess(categoryService.findAll(option));
+        return ReturnMessageUtil.success(categoryService.findAll(option));
     }
 
     @LoginUser
     @RequestMapping(value = "/findAllByServiceId/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findAllByServiceId(@PathVariable long id) {
-        return ReturnMessageUtil.sucess(categoryService.findAllByServiceId(id));
+        return ReturnMessageUtil.success(categoryService.findAllByServiceId(id));
     }
 
     @LoginUser
     @RequestMapping(value = "/exit/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> exit(@PathVariable long id) {
-        return ReturnMessageUtil.sucess(categoryService.exist(id));
+        return ReturnMessageUtil.success(categoryService.exist(id));
     }
 }

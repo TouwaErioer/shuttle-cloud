@@ -24,21 +24,21 @@ public class ProductController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ReturnMessage<Object> insert(Product product) {
         productService.insert(product);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ReturnMessage<Object> delete(long id) {
         productService.delete(id);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ReturnMessage<Object> updateProduct(Product product) {
         productService.update(product);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @LoginUser
@@ -50,50 +50,50 @@ public class ProductController {
     @Admin
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public ReturnMessage<Object> findAll(@RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.sucess(productService.findAll(option));
+        return ReturnMessageUtil.success(productService.findAll(option));
     }
 
     @LoginUser
     @RequestMapping(value = "/findByStoreId/{storeId}", method = RequestMethod.GET)
     public ReturnMessage<Object> findByStoreId(@PathVariable("storeId") long storeId) {
-        return ReturnMessageUtil.sucess(productService.findByStoreId(storeId));
+        return ReturnMessageUtil.success(productService.findByStoreId(storeId));
     }
 
     @LoginUser
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findById(@PathVariable("id") long id) {
-        return ReturnMessageUtil.sucess(productService.findById(id));
+        return ReturnMessageUtil.success(productService.findById(id));
     }
 
     @LoginUser
     @RequestMapping(value = "/review", method = RequestMethod.POST)
     public ReturnMessage<Object> review(Product product, long orderId, HttpServletRequest request) {
         productService.review(product, request.getHeader("Authorization"), orderId);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @LoginUser
     @RequestMapping(value = "/rank", method = RequestMethod.GET)
     public ReturnMessage<Object> rank(@RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.sucess(productService.rank(option));
+        return ReturnMessageUtil.success(productService.rank(option));
     }
 
     @LoginUser
     @RequestMapping(value = "/search/{keyword}", method = RequestMethod.GET)
     public ReturnMessage<Object> search(@PathVariable("keyword") String keyword, @RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.sucess(productService.search(keyword, option));
+        return ReturnMessageUtil.success(productService.search(keyword, option));
     }
 
     @LoginUser
     @RequestMapping(value = "/exist/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> exist(@PathVariable("id") long id, @RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.sucess(productService.exist(id));
+        return ReturnMessageUtil.success(productService.exist(id));
     }
 
     @LoginUser
     @RequestMapping(value = "/addSales", method = RequestMethod.POST)
     public ReturnMessage<Object> addSales(long id, int sales) {
         productService.addSales(id, sales);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 }

@@ -27,38 +27,38 @@ public class ServiceController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ReturnMessage<Object> insert(Services services) {
         serviceService.insert(services);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ReturnMessage<Object> delete(long id) {
         serviceService.delete(id);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @Admin
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ReturnMessage<Object> update(Services services) {
         serviceService.update(services);
-        return ReturnMessageUtil.sucess();
+        return ReturnMessageUtil.success();
     }
 
     @LoginUser
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public ReturnMessage<Object> findAll(@RequestParam Map<String, String> option) {
-        return ReturnMessageUtil.sucess(serviceService.findAll(option));
+        return ReturnMessageUtil.success(serviceService.findAll(option));
     }
 
     @LoginUser
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findById(@PathVariable long id) {
-        return ReturnMessageUtil.sucess(serviceService.findById(id));
+        return ReturnMessageUtil.success(serviceService.findById(id));
     }
 
     @LoginUser
     @RequestMapping(value = "/exit/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> exit(@PathVariable long id) {
-        return ReturnMessageUtil.sucess(serviceService.exist(id));
+        return ReturnMessageUtil.success(serviceService.exist(id));
     }
 }

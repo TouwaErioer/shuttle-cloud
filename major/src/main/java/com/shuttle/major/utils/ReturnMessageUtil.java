@@ -10,7 +10,7 @@ public class ReturnMessageUtil {
      * @param object
      * @return
      */
-    public static ReturnMessage<Object> sucess(Object object) {
+    public static ReturnMessage<Object> success(Object object) {
         ReturnMessage<Object> message = new ReturnMessage<Object>(1,"success",object);
         return message;
     }
@@ -18,7 +18,7 @@ public class ReturnMessageUtil {
      * 无异常 请求成功并无具体内容返回
      * @return
      */
-    public static ReturnMessage<Object> sucess() {
+    public static ReturnMessage<Object> success() {
         ReturnMessage<Object> message = new ReturnMessage<Object>(1,"success",null);
         return message;
     }
