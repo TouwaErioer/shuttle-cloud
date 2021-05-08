@@ -79,6 +79,24 @@ public class OrderController {
     }
 
     @LoginUser
+    @RequestMapping(value = "/findByCidOrOrder/{id}", method = RequestMethod.GET)
+    public ReturnMessage<Object> findByCidOrOrder(@PathVariable long id, @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(orderService.findByCidOrOrder(id, option));
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/findByCidOrPresent/{id}", method = RequestMethod.GET)
+    public ReturnMessage<Object> findByCidOrPresent(@PathVariable long id, @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(orderService.findByCidOrPresent(id, option));
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/findByCidOrCompleted/{id}", method = RequestMethod.GET)
+    public ReturnMessage<Object> findByCidOrCompleted(@PathVariable long id, @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(orderService.findByCidOrCompleted(id, option));
+    }
+
+    @LoginUser
     @RequestMapping(value = "/findBySidOrCompleted/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findBySidOrCompleted(@PathVariable long id, @RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(orderService.findBySidOrCompleted(id, option));
@@ -119,5 +137,22 @@ public class OrderController {
     @RequestMapping(value = "/findByPresent", method = RequestMethod.GET)
     public ReturnMessage<Object> findByPresent(@RequestParam Map<String, String> option) {
         return ReturnMessageUtil.sucess(orderService.findByPresent(option));
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/searchByCid/{userId}", method = RequestMethod.GET)
+    public ReturnMessage<Object> searchByCid(@RequestParam String start, @RequestParam String end,
+                                             @RequestParam Long productId, @RequestParam Long serverId,
+                                             @RequestParam int status, @PathVariable long userId,
+                                             @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(orderService.searchByCid(userId, start, end, productId, serverId, status, option));
+    }
+
+    @LoginUser
+    @RequestMapping(value = "/searchByReceive", method = RequestMethod.GET)
+    public ReturnMessage<Object> searchByReceive(@RequestParam String start, @RequestParam String end,
+                                                 @RequestParam long serviceId, @RequestParam String address,
+                                                 @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.sucess(orderService.searchByReceive(start, end, serviceId, address, option));
     }
 }

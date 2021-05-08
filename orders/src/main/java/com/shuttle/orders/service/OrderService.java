@@ -26,6 +26,12 @@ public interface OrderService {
 
     PageInfo<Orders> findByCid(long cid, Map<String, String> option);
 
+    PageInfo<Orders> findByCidOrOrder(long cid, Map<String, String> option);
+
+    PageInfo<Orders> findByCidOrPresent(long cid, Map<String, String> option);
+
+    PageInfo<Orders> findByCidOrCompleted(long cid, Map<String, String> option);
+
     PageInfo<Orders> findBySidOrCompleted(long sid, Map<String, String> option);
 
     PageInfo<Orders> findBySidOrPresent(long sid, Map<String, String> option);
@@ -39,4 +45,9 @@ public interface OrderService {
     PageInfo<Orders> findByPresent(Map<String, String> option);
 
     boolean exist(long id);
+
+    PageInfo<Orders> searchByCid(long userId, String start, String end, Long productId, Long serverId, int status,
+                                 Map<String, String> option);
+
+    PageInfo<Orders> searchByReceive(String start, String end, long serviceId, String address, Map<String, String> option);
 }

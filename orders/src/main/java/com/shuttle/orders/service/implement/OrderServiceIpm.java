@@ -197,7 +197,7 @@ public class OrderServiceIpm implements OrderService {
      * @return orders 订单类
      */
     private List<Orders> merge(List<Orders> orders) {
-        if(orders.size() == 0){
+        if (orders.size() == 0) {
             return orders;
         }
         List<Long> clientUserIds = new ArrayList<>();
@@ -220,7 +220,7 @@ public class OrderServiceIpm implements OrderService {
         // 获取storeIds
         List<Long> storeIds = new ArrayList<>();
         for (Object product : products.values()) {
-            storeIds.add(objectMapper.convertValue(product,Product.class).getStoreId());
+            storeIds.add(objectMapper.convertValue(product, Product.class).getStoreId());
         }
 
         Map<String, Store> stores = (Map<String, Store>) BusinessException.checkReturnMessage(storeFeign.batchQueryByStoreId(storeIds));
@@ -298,6 +298,54 @@ public class OrderServiceIpm implements OrderService {
         return merge(orderMapper.select(String.valueOf(cid), "cid", null));
     }
 
+    /**
+     * 根据cid查询已下单的订单（分页）
+     *
+     * @param option 分页参数
+     * @param cid    客户用户id
+     * @return 分页包装数据
+     */
+    @Override
+    @Cacheable(value = "order", key = "methodName + #cid.toString() + #option.toString()")
+    public PageInfo<Orders> findByCidOrOrder(long cid, Map<String, String> option) {
+        Utils.checkOption(option, Orders.class);
+        String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
+        PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
+        return PageInfo.of(merge(orderMapper.select(String.valueOf(cid), "cid", "-1")));
+    }
+
+    /**
+     * 根据cid查询配送中的订单（分页）
+     *
+     * @param option 分页参数
+     * @param cid    客户用户id
+     * @return 分页包装数据
+     */
+    @Override
+    @Cacheable(value = "order", key = "methodName + #cid.toString() + #option.toString()")
+    public PageInfo<Orders> findByCidOrPresent(long cid, Map<String, String> option) {
+        Utils.checkOption(option, Orders.class);
+        String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
+        PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
+        return PageInfo.of(merge(orderMapper.select(String.valueOf(cid), "cid", "0")));
+    }
+
+    /**
+     * 根据cid查询已完成的订单（分页）
+     *
+     * @param option 分页参数
+     * @param cid    客户用户id
+     * @return 分页包装数据
+     */
+    @Override
+    @Cacheable(value = "order", key = "methodName + #cid.toString() + #option.toString()")
+    public PageInfo<Orders> findByCidOrCompleted(long cid, Map<String, String> option) {
+        Utils.checkOption(option, Orders.class);
+        String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
+        PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
+        return PageInfo.of(merge(orderMapper.select(String.valueOf(cid), "cid", "1")));
+    }
+
 
     /**
      * 根据sid查询订单(已完成)
@@ -329,6 +377,46 @@ public class OrderServiceIpm implements OrderService {
         String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
         PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
         return PageInfo.of(merge(orderMapper.select(String.valueOf(sid), "sid", String.valueOf(0))));
+    }
+
+    /**
+     * 根据条件搜索cid全部的订单（分页）
+     *
+     * @param userId    用户id
+     * @param start     开始时间
+     * @param end       结束时间
+     * @param productId 产品id
+     * @param serverId  服务者id
+     * @param status    状态
+     * @param option    分页参数
+     * @return 分页包装数据
+     */
+    @Override
+    @Cacheable(value = "order", key = "methodName + #userId.toString() + #option.toString()")
+    public PageInfo<Orders> searchByCid(long userId, String start, String end, Long productId, Long serverId, int status, Map<String, String> option) {
+        Utils.checkOption(option, Orders.class);
+        String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
+        PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
+        return PageInfo.of(orderMapper.searchByCid(userId, start, end, productId, serverId, status));
+    }
+
+    /**
+     * 根据条件搜索全部未接单的订单（分页）
+     *
+     * @param start     开始时间
+     * @param end       结束时间
+     * @param serviceId 服务id
+     * @param address   地址
+     * @param option    分页参数
+     * @return 分页包装数据
+     */
+    @Override
+    @Cacheable(value = "order", key = "methodName + #option.toString()")
+    public PageInfo<Orders> searchByReceive(String start, String end, long serviceId, String address, Map<String, String> option) {
+        Utils.checkOption(option, Orders.class);
+        String orderBy = String.format("orders.%s %s", option.get("sort"), option.get("order"));
+        PageHelper.startPage(Integer.parseInt(option.get("pageNo")), Integer.parseInt(option.get("pageSize")), orderBy);
+        return PageInfo.of(orderMapper.searchByReceive(start, end, serviceId, address));
     }
 
     /**
