@@ -40,6 +40,16 @@ public class JwtUtils {
     }
 
     /**
+     * 获取email
+     *
+     * @param token Token
+     * @return 邮箱
+     */
+    public static String getUserEmail(String token) {
+        return parseJWT(token).get("email", String.class);
+    }
+
+    /**
      * 管理员
      *
      * @param token Token

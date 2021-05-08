@@ -34,4 +34,6 @@ public class User implements Serializable {
 
     @Field(type = FieldType.Text)
     private String name;
+
+    private String email;
 }
