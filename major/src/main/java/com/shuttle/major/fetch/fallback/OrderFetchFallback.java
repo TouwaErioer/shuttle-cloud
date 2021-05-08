@@ -32,4 +32,9 @@ public class OrderFetchFallback implements OrderFetch {
     public ReturnMessage<Object> completed(long id) {
         return ReturnMessageUtil.error(-1, "系统错误");
     }
+
+    @Override
+    public ReturnMessage<Object> findById(long id) {
+        return ReturnMessageUtil.error(-1, "系统错误");
+    }
 }
