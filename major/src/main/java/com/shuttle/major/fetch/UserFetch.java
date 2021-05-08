@@ -2,11 +2,11 @@ package com.shuttle.major.fetch;
 
 import com.shuttle.major.entity.ReturnMessage;
 import com.shuttle.major.fetch.fallback.UserFallback;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @description:
@@ -21,5 +21,5 @@ public interface UserFetch {
     ReturnMessage<Object> findById(@PathVariable long id);
 
     @PostMapping("/email/send")
-    ReturnMessage<Object> sendEmail(@Param("email") String email, @Param("content") String content, @Param("subject") String subject);
+    ReturnMessage<Object> sendEmail(@RequestParam("email") String email, @RequestParam("content") String content, @RequestParam("subject") String subject);
 }
