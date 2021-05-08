@@ -60,6 +60,12 @@ public class ProductController {
     }
 
     @LoginUser
+    @RequestMapping(value = "/findByStoreIdByPagination/{storeId}", method = RequestMethod.GET)
+    public ReturnMessage<Object> findByStoreId(@PathVariable("storeId") long storeId, @RequestParam Map<String, String> option) {
+        return ReturnMessageUtil.success(productService.findByStoreId(storeId, option));
+    }
+
+    @LoginUser
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public ReturnMessage<Object> findById(@PathVariable("id") long id) {
         return ReturnMessageUtil.success(productService.findById(id));

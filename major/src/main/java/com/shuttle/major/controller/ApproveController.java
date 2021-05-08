@@ -23,7 +23,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping(value = "/approve")
+@RequestMapping(value = "/major/approve")
 public class ApproveController {
 
     @Resource
