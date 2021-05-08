@@ -48,8 +48,8 @@ public class UserController {
 
     @LoginUser
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public ReturnMessage<Object> resetPassword(long id, String password) {
-        userService.updatePassword(id, password);
+    public ReturnMessage<Object> resetPassword(long id, String password, HttpServletRequest request) {
+        userService.updatePassword(id, password, request.getHeader("Authorization"));
         return ReturnMessageUtil.success();
     }
 
@@ -122,5 +122,17 @@ public class UserController {
     @RequestMapping(value = "/exist/{userId}", method = RequestMethod.GET)
     public ReturnMessage<Object> exist(@PathVariable long userId) {
         return ReturnMessageUtil.success(userService.exist(userId));
+    }
+
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+    public ReturnMessage<Object> sendEmail(String email) {
+        userService.sendEmail(email);
+        return ReturnMessageUtil.success();
+    }
+
+    @RequestMapping(value = "/forget", method = RequestMethod.POST)
+    public ReturnMessage<Object> forget(String token, String newPassword) {
+        userService.forget(token, newPassword);
+        return ReturnMessageUtil.success();
     }
 }

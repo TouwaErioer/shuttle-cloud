@@ -9,6 +9,7 @@ import com.shuttle.user.fetch.OrdersFetch;
 import com.shuttle.user.mapper.UserMapper;
 import com.shuttle.user.repository.EsPageHelper;
 import com.shuttle.user.repository.UserRepository;
+import com.shuttle.user.service.MailService;
 import com.shuttle.user.service.UserService;
 import com.shuttle.user.utils.JwtUtils;
 import com.shuttle.user.utils.Utils;
@@ -19,10 +20,10 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.beans.Transient;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,9 @@ public class UserServiceIpm implements UserService {
 
     @Resource
     private OrdersFetch ordersFetch;
+
+    @Resource
+    private MailService mailService;
 
     /**
      * 用户注册
@@ -124,7 +128,22 @@ public class UserServiceIpm implements UserService {
      */
     @Transient
     @CacheEvict(value = "user", allEntries = true)
-    public void updatePassword(long id, String password) {
+    public void updatePassword(long id, String password, String token) {
+        if (JwtUtils.getUserId(token) != id) throw new BusinessException(1, "只能修改当前用户的密码");
+        int res = userMapper.updatePassword(id, Utils.encode(password));
+        log.info(LoggerHelper.logger(id, res));
+        BusinessException.check(res, "修改密码失败");
+    }
+
+    /**
+     * 重置密码
+     *
+     * @param id       用户id
+     * @param password 密码
+     */
+    @Transactional
+    @CacheEvict(value = "user", allEntries = true)
+    public void resetPassword(long id, String password) {
         int res = userMapper.updatePassword(id, Utils.encode(password));
         log.info(LoggerHelper.logger(id, res));
         BusinessException.check(res, "修改密码失败");
@@ -274,5 +293,51 @@ public class UserServiceIpm implements UserService {
     @Override
     public boolean exist(long userId) {
         return findById(userId).size() != 0;
+    }
+
+    /**
+     * 检查token
+     *
+     * @param token token
+     * @return user
+     */
+    @Cacheable(value = "user", key = "#token")
+    @Override
+    public User check(String token) {
+        long userId = JwtUtils.getUserId(token);
+        return findById(userId).get(0);
+    }
+
+    /**
+     * 重置密码 -> 输入邮箱，点击发送邮件 -> 根据user加密生成token -> 邮箱发送成功，跳转到（前端）重置密码界面 ->
+     * 用户获取邮箱中的token，提交新密码 -> 重置密码（输入新密码） -> /user/restPassword
+     *
+     * @param newPassword 新密码
+     */
+    @Override
+    public void forget(String token, String newPassword) {
+        // 检查token是否有效
+        long id = JwtUtils.getUserId(token);
+
+        System.out.println(id);
+        List<User> list = findById(id);
+        BusinessException.check(list.size() != 0 ? 1 : 0, "用户不存在");
+        resetPassword(id, newPassword);
+    }
+
+    /**
+     * 发送邮箱
+     *
+     * @param email 邮箱
+     */
+    @Override
+    public void sendEmail(String email) {
+        User user = userMapper.findByEmail(email);
+        // 检查邮箱存不存在
+        BusinessException.check(user == null ? 0 : 1, "用户不存在");
+        // 加密生成邮箱token
+        String token = JwtUtils.createToken(user, 60);
+        // 发送邮箱
+        mailService.sendTokenMail(email, token, "shuttle重置密码链接");
     }
 }
