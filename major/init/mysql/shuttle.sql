@@ -70,7 +70,7 @@ create table star(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-create table store_approve(
+create table approve_store(
     id bigint not null auto_increment,
     status tinyint(1) not null comment '状态',
     uid bigint not null comment '用户id',
@@ -83,7 +83,7 @@ create table store_approve(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-create table product_approve(
+create table approve_product(
     id bigint not null auto_increment,
     status tinyint(1) not null comment '状态',
     uid bigint not null comment '用户id',
